@@ -1,13 +1,27 @@
-<!doctype html>
-<html lang="en">
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="pt-PT" data-theme="light">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>palmirasolochi-site</title>
+    <!-- Use stable favicon paths from /public -->
+    <link rel="icon" type="image/png" href="%BASE_URL%icons/icon-192.png" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta
+      name="description"
+      content="Palmira Solochi, profissional de TI Mainframe (COBOL, JCL, DB2, Zowe) e Desenvolvimento Moderno (Java, ASP.NET Core MVC). Especialista em Automação de Testes (Selenium, Cypress, Cucumber, BDD) e DevSecOps." />
+    <title>
+      Palmira Solochi | Especialista Mainframe, Testes e Desenvolvimento (COBOL, Java, .NET)
+    </title>
+
+    <!-- Vite entry (do NOT hardcode built assets) -->
+    <script type="module" src="/src/main.tsx"></script>
   </head>
   <body>
+    <script>
+      // document.body.setAttribute('data-theme', localStorage.getItem('theme') || 'dark');
+    </script>
     <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <div id="modal-root"></div>
   </body>
 </html>
