@@ -1,0 +1,124 @@
+// src/assets/styles/global.scss
+@use './_variables.scss' as *;
+
+/* ---------------- Fonts (Arial primary) ---------------- */
+/* Arial é system; deixamos gancho para futura serif em headings.*/
+
+@font-face {
+  font-family: 'PalmiraSerif';
+  src: url('../fonts/PlayfairDisplay-Italic.woff2') format('woff2'),
+    /* Preferido: WOFF2 */ url('../fonts/PlayfairDisplay-Italic.woff') format('woff'); /* Fallback: WOFF */
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+:root {
+  /* Colors */
+  --color-primary: #{$color-primary};
+  --color-bg: #{$color-bg};
+  --color-surface: #{$color-surface};
+  --color-text: #{$color-text};
+  --color-muted: #{$color-muted};
+  --color-border: #{$color-border};
+  --color-accent: #{$color-accent};
+
+  /* Typography */
+  --font-body: 'PalmiraSerif', Arial, Helvetica, sans-serif;
+  --font-heading: var(--font-body);
+  --fs-xxl: #{$fs-xxl};
+  --fs-xl: #{$fs-xl};
+  --fs-lg: #{$fs-lg};
+  --fs-md: #{$fs-md};
+  --fs-sm: #{$fs-sm};
+  --fs-xs: #{$fs-xs};
+
+  /* Spacing */
+  --s-2: #{$s-2};
+  --s-4: #{$s-4};
+  --s-6: #{$s-6};
+  --s-8: #{$s-8};
+  --s-12: #{$s-12};
+  --s-16: #{$s-16};
+  --s-24: #{$s-24};
+
+  /* Radius & shadows */
+  --radius-sm: #{$radius-sm};
+  --radius-md: #{$radius-md};
+  --radius-lg: #{$radius-lg};
+  --shadow-sm: #{$shadow-sm};
+  --shadow-md: #{$shadow-md};
+
+  /* Layout */
+  --layout-max-width: #{$layout-max-width};
+  --grid-gap: #{$grid-gap};
+}
+
+/* Dark theme */
+html[data-theme='dark'] {
+  --color-bg: #201a17;
+  --color-surface: #2a221e;
+  --color-text: #f4ebe4;
+  --color-muted: #c9b8ac;
+  --color-border: #3c322c;
+  --color-primary: #c7a084;
+}
+
+/* ---------------- CSS Reset mínimo + base ---------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  line-height: 1.25;
+  margin: 0 0 var(--s-8);
+}
+
+p {
+  margin: 0 0 var(--s-8);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+  height: auto;
+}
+
+button,
+a {
+  cursor: pointer;
+}
+
+main {
+  min-height: 60vh;
+}
+
+/* Focus visible */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
