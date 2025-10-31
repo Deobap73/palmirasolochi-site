@@ -1,0 +1,75 @@
+// src/components/layouts/Footer/Footer.scss
+.footer {
+  margin-top: var(--s-24);
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+
+  &__top {
+    margin: 0 var(--s-80);
+    padding: var(--s-16) var(--s-12);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--s-16);
+
+    @media (min-width: 768px) {
+      grid-template-columns: 1fr auto;
+      align-items: start;
+    }
+  }
+
+  &__brand {
+    display: flex;
+    align-items: center;
+    gap: var(--s-6);
+  }
+
+  &__logo {
+    width: 32px;
+    height: 32px;
+  }
+
+  &__title {
+    font-size: var(--fs-lg);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+  }
+
+  &__cols {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--s-16);
+  }
+
+  &__heading {
+    margin: 0 0 var(--s-8);
+    font-size: var(--fs-md);
+  }
+
+  &__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: var(--s-4);
+  }
+
+  &__link {
+    color: var(--color-text);
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__bottom {
+    border-top: 1px solid var(--color-border);
+    padding: var(--s-8) var(--s-12);
+    text-align: center;
+    background: var(--color-bg);
+  }
+
+  &__legal {
+    color: var(--color-muted);
+    font-size: var(--fs-sm);
+  }
+}
