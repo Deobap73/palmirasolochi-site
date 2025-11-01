@@ -12,6 +12,14 @@
   font-style: italic;
   font-display: swap;
 }
+@font-face {
+  font-family: 'PalmiraHandwritten';
+  src: url('../fonts/ReenieBeanie.woff2') format('woff2'),
+    /* Preferido: WOFF2 */ url('../fonts/ReenieBeanie.woff') format('woff'); /* Fallback: WOFF */
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
 
 :root {
   /* Colors */
@@ -26,6 +34,7 @@
 
   /* Typography */
   --font-body: 'PalmiraSerif', Arial, Helvetica, sans-serif;
+  --font-Handwritten: 'PalmiraHandwritten', Arial, Helvetica, sans-serif;
   --font-heading: var(--font-body);
   --fs-xxl: #{$fs-xxl};
   --fs-xl: #{$fs-xl};
