@@ -1,0 +1,12 @@
+// src/styles/_helpers.scss
+// Small helpers and utilities (avoid overusing to keep BEM clarity).
+.u-center {
+  display: grid;
+  place-items: center;
+}
+.u-margin-top {
+  margin-top: 1rem;
+}
+.u-margin-bottom {
+  margin-bottom: 1rem;
+}
