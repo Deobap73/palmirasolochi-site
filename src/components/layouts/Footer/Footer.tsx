@@ -1,5 +1,8 @@
 // src/components/layouts/Footer/Footer.tsx
+'use strict';
+
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Footer.scss';
 
 // Passo 1: Import image.
@@ -15,29 +18,30 @@ const Footer: React.FC = () => {
           <img src={LogoWebP} alt='Logótipo Palmira Solochi' />
         </div>
 
-        <div className='footer__cols'>
+        <nav className='footer__cols' aria-label='Footer menus'>
           <div className='footer__col'>
-            <h3 className='footer__heading'>Site Menu</h3>
+            <h3 className='footer__heading'>Site</h3>
             <ul className='footer__list'>
               <li>
-                <a className='footer__link' href='/about'>
+                <Link className='footer__link' to='/about'>
                   Sobre
-                </a>
+                </Link>
               </li>
               <li>
-                <a className='footer__link' href='/projects'>
+                <Link className='footer__link' to='/projects'>
                   Projetos
-                </a>
+                </Link>
               </li>
               <li>
-                <a className='footer__link' href='/contact'>
+                <Link className='footer__link' to='/contact'>
                   Contacto
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
+
           <div className='footer__col'>
-            <h3 className='footer__heading'>Redes Sociais</h3>
+            <h3 className='footer__heading'>Redes</h3>
             <ul className='footer__list'>
               <li>
                 <a className='footer__link' href='#' aria-label='LinkedIn'>
@@ -50,19 +54,23 @@ const Footer: React.FC = () => {
                 </a>
               </li>
               <li>
-                <a className='footer__link' href='#' aria-label='Contacto'>
-                  Contacto
+                <a className='footer__link' href='mailto:hello@example.com'>
+                  Email
                 </a>
               </li>
             </ul>
           </div>
-        </div>
+        </nav>
       </div>
 
       <div className='footer__bottom'>
         <small className='footer__legal'>
-          © {year} Todos os direitos reservados. Desenvolvido por{' '}
-          <a className='footer__link' href='#'>
+          © {year} Todos os direitos reservados. Feito por{' '}
+          <a
+            className='footer__link'
+            href='https://thehumantechblog.com'
+            target='_blank'
+            rel='noopener noreferrer'>
             Deolindo Baptista
           </a>
           .
