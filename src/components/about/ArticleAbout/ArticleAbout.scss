@@ -1,0 +1,58 @@
+// src/components/about/ArticleAbout/ArticleAbout.scss
+
+.aboutArticle {
+  background: var(color-surface);
+  padding-block: clamp(var(--s-16), 6vw, var(--s-24));
+  color: var(--color-text);
+
+  &__inner {
+    max-width: var(--layout-max-width);
+    margin-inline: auto;
+    padding-inline: var(--s-12);
+  }
+
+  &__media {
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    margin-bottom: var(--s-16);
+    box-shadow: var(--shadow-sm);
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      aspect-ratio: 16 / 9;
+    }
+  }
+
+  &__title {
+    margin: 0 0 var(--s-12);
+    font-family: var(--font-heading);
+    font-size: var(--fs-xl);
+    font-weight: 700;
+    text-align: center;
+    color: var(--color-text);
+  }
+
+  &__content {
+    display: grid;
+    gap: var(--s-8);
+  }
+
+  &__paragraph {
+    margin: 0;
+    font-size: var(--fs-md);
+    line-height: 1.8;
+    text-align: justify;
+    color: var(--color-text);
+  }
+
+  @media (min-width: 768px) {
+    &__paragraph {
+      font-size: var(--fs-lg);
+      max-width: 90%;
+      /* margin-inline: auto; */
+    }
+  }
+}
