@@ -18,6 +18,7 @@ export interface HeroAboutProps {
   ctaSecondary?: AboutHeroCTA;
   imageSrc: string;
   imageAlt: string;
+  inverted?: boolean; // ← Nova prop para controlar o layout
 }
 
 const HeroAbout: React.FC<HeroAboutProps> = ({
@@ -28,16 +29,12 @@ const HeroAbout: React.FC<HeroAboutProps> = ({
   ctaSecondary = { label: 'Contacto', href: '/contact' },
   imageSrc,
   imageAlt,
+  inverted = false, // ← Valor padrão: false (layout original)
 }) => {
   return (
-    <section className='about-hero' aria-labelledby='about-hero-title'>
-      {/* Palco base (mobile empilhado; desktop serve de referência para absolute) */}
-      <div className='about-hero__stage' aria-hidden='true'>
-        <div className='about-hero__media'>
-          <img className='about-hero__img' src={imageSrc} alt={imageAlt} />
-        </div>
-      </div>
-
+    <section
+      className={`about-hero ${inverted ? 'about-hero--inverted' : ''}`} // ← Classe condicional
+      aria-labelledby='about-hero-title'>
       {/* Cartão (à esquerda no desktop; abaixo da imagem no mobile) */}
       <div className='about-hero__card' role='group' aria-label='Destaque sobre mim'>
         <h1 id='about-hero-title' className='about-hero__title'>
@@ -57,6 +54,12 @@ const HeroAbout: React.FC<HeroAboutProps> = ({
               {ctaSecondary.label}
             </Button>
           )}
+        </div>
+      </div>
+      {/* Palco base (mobile empilhado; desktop serve de referência para absolute) */}
+      <div className='about-hero__stage' aria-hidden='true'>
+        <div className='about-hero__media'>
+          <img className='about-hero__img' src={imageSrc} alt={imageAlt} />
         </div>
       </div>
     </section>

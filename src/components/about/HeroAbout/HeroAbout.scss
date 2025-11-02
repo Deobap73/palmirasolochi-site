@@ -2,12 +2,16 @@
 .about-hero {
   position: relative;
   padding-block: var(--s-16);
+  padding-inline: var(--s-12);
   max-width: var(--layout-max-width);
   margin-inline: auto;
-  padding-inline: var(--s-12);
 
-  /* ===== Mobile-first: EMPILHADO ===== */
+  /* ===== Mobile-first: empilhado com imagem 1º, card 2º ===== */
+  display: grid;
+  gap: var(--s-12);
+
   &__stage {
+    order: 1; /* imagem vem primeiro */
     position: relative;
     min-block-size: 0;
   }
@@ -18,7 +22,7 @@
     border-radius: var(--radius-md);
     overflow: hidden;
     box-shadow: var(--shadow-sm);
-    aspect-ratio: 16 / 9; /* sempre 16/9 */
+    aspect-ratio: 16 / 9;
   }
 
   &__img {
@@ -29,14 +33,19 @@
   }
 
   &__card {
-    background: var(--color-surface);
+    order: 2; /* card vem depois no mobile */
+    z-index: 1;
+    background: #f8f3ef82;
     border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-md);
     padding: var(--s-16);
     display: grid;
     gap: var(--s-8);
-    margin-top: var(--s-12); /* no mobile fica abaixo da imagem */
+    margin-top: var(--s-12);
+
+    /* 🔹 largura mínima garantida em todos os tamanhos */
+    min-inline-size: 330px;
   }
 
   &__title {
@@ -63,51 +72,99 @@
   &__actions {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-evenly;
     gap: var(--s-8);
     margin-top: var(--s-8);
   }
 
-  /* ===== Desktop: ABSOLUTE overlay (INVERSE) ===== */
+  /* ===== Desktop: overlay absoluto ===== */
   @media (min-width: 768px) {
+    gap: 0;
+
     &__stage {
       min-block-size: clamp(22rem, 40vw, 46rem);
     }
 
-    /* INVERSE: imagem à DIREITA, card à ESQUERDA */
+    /* Padrão: imagem à esquerda */
     &__media {
       position: absolute;
       top: 0;
-      right: 0; /* imagem encostada à direita por defeito */
+      left: 0;
       inline-size: 60%;
       aspect-ratio: 16 / 9;
     }
 
+    /* Card à direita */
     &__card {
       position: absolute;
       top: 50%;
-      left: 0; /* card encostado à esquerda por defeito */
+      right: 0;
       transform: translateY(-50%);
       inline-size: 38%;
       margin-top: 0;
+      left: auto;
+
+      /* 🔹 mantém min-width no desktop */
+      min-inline-size: 330px;
+    }
+
+    /* Invertido opcional */
+    &.about-hero--inverted {
+      .about-hero__media {
+        left: auto;
+        right: 0;
+      }
+      .about-hero__card {
+        right: auto;
+        left: 0;
+        min-inline-size: 500px;
+      }
     }
   }
 
-  /* ===== ≥1200px: offsets exatos, com clamp para não sair da viewport ===== */
-  @media (min-width: 1200px) {
-    /* Imagem à direita, mas usar left:40rem conforme pedido.
-       clamp(min: padding, preferred: 40rem, max: 100% - padding - largura da imagem) */
+  /* ≥1024px */
+  @media (min-width: 1024px) {
     &__media {
-      inline-size: 90%;
-      right: auto;
-      left: clamp(var(--s-12), 40rem, calc(100% - var(--s-12) - 90%));
+      inline-size: 70%;
+    }
+    &__card {
+      inline-size: 32%;
+      right: 0;
+      left: auto;
     }
 
-    /* Card à esquerda com offset por direita 27rem (preferido).
-       clamp(min: padding, preferred: 27rem, max: 100% - padding - largura do card) */
+    &.about-hero--inverted {
+      .about-hero__media {
+        inline-size: 70%;
+      }
+      .about-hero__card {
+        inline-size: 32%;
+        left: 0;
+        right: auto;
+      }
+    }
+  }
+
+  /* ≥1200px */
+  @media (min-width: 1200px) {
+    &__media {
+      inline-size: 72%;
+    }
     &__card {
-      inline-size: 50%;
+      inline-size: 34%;
+      right: 0;
       left: auto;
-      right: clamp(var(--s-12), 27rem, calc(100% - var(--s-12) - 50%));
+    }
+
+    &.about-hero--inverted {
+      .about-hero__media {
+        inline-size: 72%;
+      }
+      .about-hero__card {
+        inline-size: 34%;
+        left: 0;
+        right: auto;
+      }
     }
   }
 }

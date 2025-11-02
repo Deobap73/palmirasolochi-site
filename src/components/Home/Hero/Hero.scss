@@ -9,7 +9,7 @@
     margin: 0 var(--s-32);
   }
 
-  /* ===== Base (mobile-first): EMPILHADO ===== */
+  /* ===== Base (mobile-first): STACKED ===== */
   &__stage {
     position: relative;
     max-width: var(--layout-max-width);
@@ -32,7 +32,7 @@
     display: block;
   }
 
-  /* CARTÃO */
+  /* CARD */
   &__card {
     background: var(--color-bg-light);
     border: 1px solid var(--color-border);
