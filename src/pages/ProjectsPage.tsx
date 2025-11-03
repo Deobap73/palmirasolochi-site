@@ -3,6 +3,7 @@ import React from 'react';
 // Components
 import HeroProjects from '../components/Projects/HeroProjects/HeroProjects';
 import IntroBannerProjects from '../components/Projects/IntroBannerProjects/IntroBannerProjects';
+import FiltersBar, { SortOption } from '../components/Projects/FiltersBar/FiltersBar';
 
 // Image
 import hero3 from '../assets/hero-3.webp';
@@ -25,6 +26,15 @@ const ProjectsPage: React.FC = () => {
 <p>“Cada linha de código é uma oportunidade para aprender, melhorar e criar algo que faça a diferença.”</p>
 `;
 
+  const [q, setQ] = React.useState('');
+  const [sort, setSort] = React.useState<SortOption>('newest');
+  const [activeTags, setActiveTags] = React.useState<string[]>([]);
+  const tags = ['Python', 'PHP', 'C++', 'C#', 'QA', 'COBOL', 'Java'];
+
+  const toggleTag = (tag: string) => {
+    setActiveTags((prev) => (prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]));
+  };
+
   return (
     <section aria-labelledby='ProjectsPage-title' className='pagesGeneral'>
       <HeroProjects
@@ -38,6 +48,16 @@ const ProjectsPage: React.FC = () => {
       />
 
       <IntroBannerProjects text={introText} align='center' />
+
+      <FiltersBar
+        search={q}
+        onSearch={setQ}
+        sort={sort}
+        onSort={setSort}
+        tags={tags}
+        activeTags={activeTags}
+        onToggleTag={toggleTag}
+      />
     </section>
   );
 };
