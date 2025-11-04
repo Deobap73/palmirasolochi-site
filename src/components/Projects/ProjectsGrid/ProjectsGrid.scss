@@ -1,0 +1,53 @@
+// src/components/Projects/ProjectsGrid/ProjectsGrid.scss
+.projGrid {
+  padding-block: var(--s-12);
+
+  &--compact {
+    padding-block: var(--s-8);
+  }
+
+  &__grid {
+    max-width: var(--layout-max-width);
+    margin-inline: auto;
+    padding-inline: var(--s-12);
+
+    display: grid;
+    gap: var(--grid-gap);
+
+    /* 1 col: mobile */
+    grid-template-columns: 1fr;
+
+    /* 2 col: ≥576px */
+    @media (min-width: 576px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* 3 col: ≥992px */
+    @media (min-width: 992px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  &__cell {
+    /* espaço reservado para futuros modificadores por cartão */
+  }
+
+  /* Empty state */
+  &__empty {
+    max-width: var(--layout-max-width);
+    margin-inline: auto;
+    padding: var(--s-20) var(--s-12);
+    display: grid;
+    place-items: center;
+    text-align: center;
+    border: 1px dashed var(--color-border);
+    border-radius: var(--radius-md);
+    background: color-mix(in oklab, var(--color-bg) 86%, var(--color-surface));
+  }
+
+  &__emptyText {
+    margin: 0;
+    font-size: var(--fs-md);
+    color: var(--color-muted);
+  }
+}
