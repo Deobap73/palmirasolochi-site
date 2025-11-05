@@ -1,0 +1,56 @@
+// src/components/Contact/ContactForm/ContactForm.scss
+.contactForm {
+  background: var(--color-beige-light, #ebe1d7);
+  border: 1px solid var(--color-border, #dccfc2);
+  border-radius: var(--radius-md, 8px);
+  padding: var(--s-16, 16px);
+  box-shadow: var(--shadow-md, 0 8px 24px rgba(0, 0, 0, 0.08));
+
+  &__row {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-6, 6px);
+    & + & {
+      margin-top: var(--s-10, 10px);
+    }
+  }
+
+  &__label {
+    font-size: 0.875rem;
+    color: var(--color-text-dark, #2f2a28);
+  }
+
+  &__input,
+  &__textarea {
+    width: 100%;
+    border: 1px solid var(--color-border, #dccfc2);
+    border-radius: var(--radius-sm, 6px);
+    padding: var(--s-10, 10px) var(--s-12, 12px);
+    background: #fff;
+    color: var(--color-text, #2f2a28);
+    outline: none;
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+
+    &:focus {
+      border-color: var(--color-gold, #c3a57a);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-focus, #0a84ff) 25%, transparent);
+    }
+  }
+
+  &__textarea {
+    resize: vertical;
+  }
+
+  &__actions {
+    margin-top: var(--s-12, 12px);
+    display: flex;
+    align-items: center;
+    gap: var(--s-12, 12px);
+    flex-wrap: wrap;
+  }
+
+  &__feedback {
+    font-size: 0.9rem;
+    color: var(--color-muted, #6e5545);
+  }
+}

@@ -1,0 +1,15 @@
+// src/pages/styles/ContactPage.scss
+.contactPage {
+  background: var(--color-beige, #e6d9ce);
+
+  // vertical rhythm between sections
+  & > * + * {
+    margin-top: var(--s-24, 24px);
+  }
+
+  @media (min-width: 1024px) {
+    & > * + * {
+      margin-top: var(--s-40, 40px);
+    }
+  }
+}

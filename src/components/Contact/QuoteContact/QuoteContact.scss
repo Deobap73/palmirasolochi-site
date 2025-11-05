@@ -1,0 +1,22 @@
+// src/components/Contact/QuoteContact/QuoteContact.scss
+.quoteContact {
+  background: var(--color-beige-light, #ebe1d7);
+  padding: var(--s-16, 16px) 0;
+
+  &__text {
+    margin: 0;
+    text-align: center;
+    color: var(--color-text-dark, #2f2a28);
+    font-family: var(--font-title, 'Playfair Display', serif);
+    font-size: clamp(0.95rem, 1.5vw, 1.05rem);
+    line-height: 1.6;
+
+    p {
+      margin: 0;
+    }
+  }
+
+  @media (min-width: 900px) {
+    padding: var(--s-24, 24px) 0;
+  }
+}

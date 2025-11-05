@@ -1,0 +1,70 @@
+// src/components/Contact/HeroContact/HeroContact.scss
+.heroContact {
+  padding: var(--s-24, 24px) 0;
+  background: var(--color-beige, #e6d9ce);
+
+  &__grid {
+    display: grid;
+    gap: var(--s-16, 16px);
+    grid-template-columns: 1fr;
+    align-items: center;
+  }
+
+  &__figure {
+    margin: 0;
+  }
+
+  &__image {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-md, 8px);
+    box-shadow: var(--shadow-md, 0 8px 24px rgba(0, 0, 0, 0.08));
+    object-fit: cover;
+  }
+
+  &__card {
+    background: var(--color-surface, #f0e6dd);
+    border-radius: var(--radius-md, 8px);
+    padding: var(--s-16, 16px) var(--s-20, 20px);
+    box-shadow: var(--shadow-md, 0 8px 24px rgba(0, 0, 0, 0.08));
+    border: 1px solid var(--color-border, #dccfc2);
+  }
+
+  &__title {
+    font-family: var(--font-title, 'Playfair Display', serif);
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
+    color: var(--color-text-dark, #2f2a28);
+    margin: 0 0 var(--s-8, 8px);
+  }
+
+  &__text {
+    margin: 0 0 var(--s-12, 12px);
+    color: var(--color-text, #2f2a28);
+    line-height: 1.5;
+  }
+
+  &__btn {
+    // Button component already styled; keep only layout tweaks if needed
+    display: inline-flex;
+  }
+
+  @media (min-width: 900px) {
+    padding: var(--s-40, 40px) 0;
+
+    &__grid {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--s-24, 24px);
+    }
+
+    &__figure {
+      order: 1; // imagem à esquerda
+    }
+
+    &__card {
+      order: 2;
+      max-width: 520px;
+      justify-self: start;
+    }
+  }
+}

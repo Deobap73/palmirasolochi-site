@@ -1,0 +1,32 @@
+// src/components/common/SectionTitle/SectionTitle.scss
+.sectionTitle {
+  text-align: center;
+  margin-bottom: var(--s-16, 16px);
+
+  &__title {
+    font-family: var(--font-title, 'Playfair Display', serif);
+    font-weight: 600;
+    font-size: clamp(1.25rem, 2vw, 1.75rem);
+    color: var(--color-text-dark, #2f2a28);
+    margin: 0;
+  }
+
+  &__subtitle {
+    font-family: var(--font-base, 'Inter', sans-serif);
+    font-size: 0.95rem;
+    color: var(--color-muted, #6e5545);
+    margin-top: var(--s-6, 6px);
+  }
+
+  &--left {
+    text-align: left;
+  }
+
+  &--right {
+    text-align: right;
+  }
+
+  @media (min-width: 900px) {
+    margin-bottom: var(--s-24, 24px);
+  }
+}

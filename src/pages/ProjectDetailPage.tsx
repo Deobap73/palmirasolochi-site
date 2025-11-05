@@ -2,7 +2,7 @@
 'use strict';
 
 import React from 'react';
-import './ProjectDetailPage.scss';
+import './styles/ProjectDetailPage.scss';
 import Button from '../components/common/Button/Button';
 import { Project } from '../types/project';
 import { getProjectBySlug } from '../services/projects';

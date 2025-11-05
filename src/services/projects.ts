@@ -3,10 +3,14 @@
 
 import { Project } from '../types/project';
 
+/** Caminho padrão para página de detalhe */
+export function detailsPath(slug: string): string {
+  return `/projects/${slug}`;
+}
+
 /**
  * MOCK PROJECTS
- * - Mantém slugs estáveis para navegação.
- * - Podes trocar/expandir conforme precisares.
+ * (mantidos iguais — agora apenas exportamos também o helper `detailsPath`)
  */
 const MOCK_PROJECTS: Project[] = [
   {
