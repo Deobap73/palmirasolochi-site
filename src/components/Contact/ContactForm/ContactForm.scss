@@ -6,10 +6,25 @@
   padding: var(--s-16, 16px);
   box-shadow: var(--shadow-md, 0 8px 24px rgba(0, 0, 0, 0.08));
 
+  &__honeypot {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    label {
+      display: none;
+    }
+    input {
+      display: none;
+    }
+  }
+
   &__row {
     display: flex;
     flex-direction: column;
     gap: var(--s-6, 6px);
+
     & + & {
       margin-top: var(--s-10, 10px);
     }
@@ -52,5 +67,10 @@
   &__feedback {
     font-size: 0.9rem;
     color: var(--color-muted, #6e5545);
+  }
+
+  &__error {
+    font-size: 0.9rem;
+    color: #8b0000;
   }
 }

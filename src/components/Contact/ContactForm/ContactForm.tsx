@@ -4,16 +4,10 @@
 import React, { useState } from 'react';
 import './ContactForm.scss';
 import Button from '../../common/Button/Button';
-
-export interface ContactFormValues {
-  name: string;
-  email: string;
-  subject: string;
-  message: string;
-}
+import type { ContactFormValues } from '../../../types/contact';
+import { sendContactEmail } from '../../../services/email/emailjsClient';
 
 interface Props {
-  onSubmit?: (values: ContactFormValues) => Promise<void> | void;
   className?: string;
 }
 
@@ -22,12 +16,14 @@ const initialValues: ContactFormValues = {
   email: '',
   subject: '',
   message: '',
+  company: '', // honeypot
 };
 
-const ContactForm: React.FC<Props> = ({ onSubmit, className = '' }) => {
+const ContactForm: React.FC<Props> = ({ className = '' }) => {
   const [values, setValues] = useState<ContactFormValues>(initialValues);
   const [sending, setSending] = useState<boolean>(false);
   const [sent, setSent] = useState<boolean>(false);
+  const [error, setError] = useState<string>('');
 
   const rootCls = ['contactForm', className].filter(Boolean).join(' ');
 
@@ -40,20 +36,23 @@ const ContactForm: React.FC<Props> = ({ onSubmit, className = '' }) => {
     e.preventDefault();
     if (sending) return;
 
-    // Simple required validation
+    // Required básicos
     if (!values.name || !values.email || !values.message) {
-      alert('Por favor preencha Nome, Email e Mensagem.');
+      setError('Por favor preencha Nome, Email e Mensagem.');
       return;
     }
 
     try {
+      setError('');
       setSending(true);
-      await onSubmit?.(values);
+      await sendContactEmail(values);
       setSent(true);
       setValues(initialValues);
+      // Limpa feedback após alguns segundos (UX)
+      window.setTimeout(() => setSent(false), 4000);
     } catch (err) {
       console.error(err);
-      alert('Ocorreu um erro ao enviar. Tenta novamente.');
+      setError('Ocorreu um erro ao enviar. Tenta novamente.');
     } finally {
       setSending(false);
     }
@@ -61,6 +60,20 @@ const ContactForm: React.FC<Props> = ({ onSubmit, className = '' }) => {
 
   return (
     <form className={rootCls} onSubmit={handleSubmit} noValidate aria-live='polite'>
+      {/* Honeypot anti-spam: escondido de humanos; bots costumam preencher */}
+      <div className='contactForm__honeypot' aria-hidden='true'>
+        <label htmlFor='company'>Empresa</label>
+        <input
+          id='company'
+          name='company'
+          type='text'
+          autoComplete='off'
+          tabIndex={-1}
+          value={values.company}
+          onChange={handleChange}
+        />
+      </div>
+
       <div className='contactForm__row'>
         <label className='contactForm__label' htmlFor='name'>
           Nome
@@ -136,7 +149,13 @@ const ContactForm: React.FC<Props> = ({ onSubmit, className = '' }) => {
 
         {sent && (
           <span className='contactForm__feedback' role='status'>
-            Obrigado! A tua mensagem foi enviada.
+            Obrigado! A sua mensagem foi enviada.
+          </span>
+        )}
+
+        {error && (
+          <span className='contactForm__error' role='alert'>
+            {error}
           </span>
         )}
       </div>
