@@ -42,7 +42,9 @@
 
   &__paragraph {
     margin: 0;
-    font-family: var(--font-Handwritten);
+    /* font-family: var(--font-Handwritten); */
+    font-family: var(--font-heading);
+    font-style: italic;
     font-size: var(--fs-md);
     line-height: 1.8;
     text-align: justify;
@@ -51,7 +53,7 @@
 
   @media (min-width: 768px) {
     &__paragraph {
-      font-size: var(--fs-xl);
+      font-size: var(--fs-lg);
       max-width: 90%;
       /* margin-inline: auto; */
     }

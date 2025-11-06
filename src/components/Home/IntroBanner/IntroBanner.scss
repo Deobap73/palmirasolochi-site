@@ -4,22 +4,26 @@
   background: var(--color-bg);
   min-height: 260px;
   padding-block: var(--s-16);
+  display: flex;
+  align-items: center;
 
   &__inner {
     max-width: var(--layout-max-width);
     margin-inline: auto;
     padding-inline: var(--s-12);
-    display: flex;
     justify-content: center;
     gap: var(--s-8);
   }
 
   &__text {
-    max-width: var(--s-500);
     margin: 0;
-    font-family: var(--font-Handwritten);
-    font-size: clamp(1rem, 1rem + 1vw, 2.25rem);
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-weight: 700;
+    line-height: 1.6;
     color: var(--color-text);
+    opacity: 0.92;
+    font-size: clamp(1rem, 0.95rem + 0.9vw, 1.25rem);
   }
 
   /* Modificadores de alinhamento */

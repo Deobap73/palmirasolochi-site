@@ -1,23 +1,25 @@
 // src/components/Contact/ContactFormSection/ContactFormSection.scss
 .contactSection {
-  background: var(--color-beige, #e6d9ce);
-  padding: var(--s-24, 24px) 0;
+  margin: 0 var(--s-8);
+  padding: var(--s-16) var(--s-12);
+
+  @media (min-width: 768px) {
+    margin: 0 var(--s-32);
+  }
 
   &__grid {
     display: grid;
-    grid-template-columns: 1fr;
     gap: var(--s-16, 16px);
-    align-items: start;
+    grid-template-columns: 1fr;
+    align-items: center;
   }
 
   &__note {
-    background: var(--color-surface, #f0e6dd);
-    border: 1px solid var(--color-border, #dccfc2);
-    border-radius: var(--radius-md, 8px);
     padding: var(--s-16, 16px);
     color: var(--color-text, #2f2a28);
     line-height: 1.6;
     box-shadow: var(--shadow-md, 0 8px 24px rgba(0, 0, 0, 0.08));
+    text-align: center;
   }
 
   @media (min-width: 960px) {

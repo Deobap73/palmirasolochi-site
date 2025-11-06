@@ -17,8 +17,9 @@ const ContactFormSection: React.FC = () => {
           <ContactForm />
           <aside className='contactSection__note' aria-label='Nota informativa'>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ultricies eleifend velit
-              interdum, et aliquet neque auctor. Morbi et est interdum, eu aliquet velit auctor.
+              Estou aqui para ajudar a transformar as suas ideias em realidade. Preencha o
+              formulário e darei uma resposta personalizada no prazo de 24 horas. <br />
+              <strong> Vamos criar algo extraordinário juntos!</strong>
             </p>
           </aside>
         </div>

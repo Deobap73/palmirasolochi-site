@@ -11,7 +11,7 @@ export interface HeroContactProps {
   imageSrc: string;
   imageAlt?: string;
   title: string;
-  text: string;
+  text: string | React.ReactNode;
   ctaLabel: string;
   onCtaClick?: () => void;
   className?: string;

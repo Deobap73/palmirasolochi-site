@@ -3,14 +3,12 @@
   min-height: 260px;
   padding-block: var(--s-16);
   display: flex;
-  align-items: center;
 
   &__inner {
     max-width: var(--layout-max-width);
     margin-inline: auto;
     padding-inline: var(--s-12);
     display: flex;
-    justify-content: center;
   }
 
   &__text {
@@ -60,7 +58,7 @@
   }
 
   &--center {
-    text-align: center;
+    text-align: justify;
     justify-content: center;
   }
 

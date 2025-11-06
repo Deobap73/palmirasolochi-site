@@ -137,7 +137,6 @@
 
     /* estado ativo via NavLink (.active) */
     &.active {
-      color: var(--color-primary);
       &::after {
         transform: scaleX(1);
       }

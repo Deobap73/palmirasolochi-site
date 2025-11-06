@@ -4,11 +4,12 @@
   margin-bottom: var(--s-16, 16px);
 
   &__title {
-    font-family: var(--font-title, 'Playfair Display', serif);
-    font-weight: 600;
-    font-size: clamp(1.25rem, 2vw, 1.75rem);
-    color: var(--color-text-dark, #2f2a28);
-    margin: 0;
+    margin: 0 0 var(--s-12);
+    font-family: var(--font-heading);
+    font-size: var(--fs-xl);
+    font-weight: 700;
+    text-align: center;
+    color: var(--color-text);
   }
 
   &__subtitle {
