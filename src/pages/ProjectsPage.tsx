@@ -11,17 +11,11 @@ import ProjectsGrid, { ProjectGridItem } from '../components/Projects/ProjectsGr
 import Pagination from '../components/Projects/Pagination/Pagination';
 import CtaBand from '../components/Projects/CtaBand/CtaBand';
 
-// Services / Types
-import { listProjects, detailsPath } from '../services/projects';
+// Services
+import { listProjects } from '../services/projects';
 
-// Images
+// Hero intacto
 import hero3 from '../assets/hero-3.webp';
-import mock1 from '../assets/mock1.webp';
-import mock2 from '../assets/mock2.webp';
-import mock3 from '../assets/mock3.webp';
-import mock4 from '../assets/mock4.webp';
-import mock5 from '../assets/mock5.webp';
-import mock6 from '../assets/mock6.webp';
 
 const ProjectsPage: React.FC = () => {
   const introText = `
@@ -54,23 +48,19 @@ const ProjectsPage: React.FC = () => {
     setActiveTags((prev) => (prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]));
   };
 
-  // ======= SOURCE: serviço + mapeamento para GridItem (links.details preenchido) =======
-  const placeholders = [mock1, mock2, mock3, mock4, mock5, mock6];
-
+  // ======= SOURCE =======
   const allProjects: ProjectGridItem[] = React.useMemo(() => {
     const src = listProjects();
-    return src.map((p, idx) => ({
+    console.debug('[ProjectsPage] listProjects length:', src.length, src);
+    return src.map((p) => ({
       id: p.id,
       title: p.title,
       subtitle: p.subtitle,
       excerpt: p.excerpt,
-      imageSrc: p.media?.imageSrc || placeholders[idx % placeholders.length],
+      imageSrc: p.media?.imageSrc,
       imageAlt: p.media?.imageAlt || p.title,
       tags: p.tags,
-      links: {
-        ...p.links,
-        details: p.slug ? detailsPath(p.slug) : undefined, // 👈 liga ao /projects/:slug
-      },
+      links: p.links,
     }));
   }, []);
 
@@ -90,7 +80,6 @@ const ProjectsPage: React.FC = () => {
   const sorted = [...filtered].sort((a, b) => {
     if (sort === 'az') return a.title.localeCompare(b.title);
     if (sort === 'za') return b.title.localeCompare(a.title);
-    // newest/oldest simulados via ID (mock numérico)
     return sort === 'newest' ? Number(b.id) - Number(a.id) : Number(a.id) - Number(b.id);
   });
 
@@ -100,7 +89,7 @@ const ProjectsPage: React.FC = () => {
   const pageItems = sorted.slice(startIndex, startIndex + itemsPerPage);
 
   React.useEffect(() => {
-    setPage(1); // reset página ao alterar filtros
+    setPage(1);
   }, [q, sort, activeTags]);
 
   return (
@@ -133,7 +122,7 @@ const ProjectsPage: React.FC = () => {
 
       <CtaBand
         title='Tem um projeto em mente?'
-        text='Fale comigo para desenharmos juntos a melhor solução — com qualidade, acessibilidade e foco no detalhe.'
+        text='Fale comigo para desenharmos juntos a melhor solução, com qualidade, acessibilidade e foco no detalhe.'
         primary={{ label: 'Contactar', href: '/contact' }}
         secondary={{
           label: 'LinkedIn',

@@ -14,10 +14,12 @@ export interface ProjectLinks {
 /**
  * Visual/media data for a project.
  * - 16:9 is the default expected ratio on cards/pages.
+ * - imageFile is the filename stored under src/assets/projects/
  */
 export interface ProjectMedia {
   imageSrc?: string;
   imageAlt?: string;
+  imageFile?: string;
   /** Optional array of gallery images for future use */
   gallery?: Array<{ src: string; alt?: string }>;
 }
@@ -43,25 +45,21 @@ export type ProjectStatus = 'draft' | 'in-progress' | 'completed' | 'archived';
  * Core Project entity used across grid, filters and details.
  */
 export interface Project {
-  id: string; // stable id (uuid/slugish)
-  slug?: string; // optional route-friendly slug
-  title: string; // required title
-  subtitle?: string; // short line under title
-  excerpt?: string; // short description for cards
-  description?: string; // rich text/markdown for details
-  category?: ProjectCategory; // classification for filters
-  tags?: string[]; // free-form technology tags
-  status?: ProjectStatus; // lifecycle status
+  id: string;
+  slug?: string;
+  title: string;
+  subtitle?: string;
+  excerpt?: string;
+  description?: string;
+  category?: ProjectCategory;
+  tags?: string[];
+  status?: ProjectStatus;
 
-  /** Media block (16:9 primary image expected for cards) */
   media?: ProjectMedia;
-
-  /** Links block (live/repo/details) */
   links?: ProjectLinks;
 
-  /** Timestamps for sorting or audit (optional) */
-  createdAt?: string; // ISO string
-  updatedAt?: string; // ISO string
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 /**
@@ -100,8 +98,8 @@ export function sortProjects(items: Project[], order: ProjectSort): Project[] {
  * Basic filter helpers to reuse in pages/services.
  */
 export interface ProjectFilter {
-  q?: string; // free-text query
-  tags?: string[]; // active tags
+  q?: string;
+  tags?: string[];
   category?: ProjectCategory;
 }
 

@@ -58,7 +58,7 @@ const CtaBand: React.FC<CtaBandProps> = ({
                 href={secondary.href}
                 variant='secondary'
                 size='lg'
-                aria-Label={secondary.ariaLabel || secondary.label}
+                aria-label={secondary.ariaLabel || secondary.label}
                 target={secondary.target}>
                 {secondary.label}
               </Button>

@@ -148,7 +148,7 @@ const ContactForm: React.FC<Props> = ({ className = '' }) => {
         <Button
           type='submit'
           disabled={sending}
-          aria-Label={sending ? 'A enviar…' : 'Enviar mensagem'}>
+          aria-label={sending ? 'A enviar…' : 'Enviar mensagem'}>
           {sending ? 'A enviar…' : 'Enviar'}
         </Button>
 

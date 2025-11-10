@@ -96,17 +96,17 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       {(links?.live || links?.repo || links?.details) && (
         <footer className='projectCard__footer' aria-label='Ações do projeto'>
           {links?.live && (
-            <Button href={links.live} variant='primary' size='sm' aria-Label='Abrir demonstração'>
+            <Button href={links.live} variant='primary' size='sm' aria-label='Abrir demonstração'>
               Live
             </Button>
           )}
           {links?.repo && (
-            <Button href={links.repo} variant='secondary' size='sm' aria-Label='Abrir repositório'>
+            <Button href={links.repo} variant='secondary' size='sm' aria-label='Abrir repositório'>
               GitHub
             </Button>
           )}
           {links?.details && (
-            <Button href={links.details} variant='ghost' size='sm' aria-Label='Ver detalhes'>
+            <Button href={links.details} variant='ghost' size='sm' aria-label='Ver detalhes'>
               Detalhes
             </Button>
           )}

@@ -9,6 +9,7 @@
   box-shadow: var(--shadow-sm);
   padding: var(--s-12);
   transition: transform 160ms ease, box-shadow 160ms ease;
+  min-height: 530px;
 
   &:hover,
   &:focus-within {

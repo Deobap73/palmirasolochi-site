@@ -8,8 +8,8 @@ import { Project } from '../types/project';
 import { getProjectBySlug } from '../services/projects';
 import { useParams } from 'react-router-dom';
 
-// Fallback de imagem local (mantém 16:9)
-import heroDetail from '../assets/mock1.webp';
+// Fallback local 16:9 atualizado para a nova pasta
+import heroDetail from '../assets/projects/mock1.webp';
 
 const formatDate = (iso?: string) => {
   if (!iso) return '';
@@ -23,7 +23,6 @@ const ProjectDetailPage: React.FC = () => {
   const [notFound, setNotFound] = React.useState(false);
 
   React.useEffect(() => {
-    // mock sync; no futuro, pode ser async (fetch)
     const found = slug ? getProjectBySlug(slug) : undefined;
     if (found) {
       setProject(found);
@@ -88,12 +87,12 @@ const ProjectDetailPage: React.FC = () => {
           {(links?.live || links?.repo) && (
             <div className='projDetail__actions' role='group' aria-label='Ações do projeto'>
               {links?.live && (
-                <Button href={links.live} variant='primary' size='md' aria-Label='Abrir demo'>
+                <Button href={links.live} variant='primary' size='md' aria-label='Abrir demo'>
                   Live
                 </Button>
               )}
               {links?.repo && (
-                <Button href={links.repo} variant='secondary' size='md' aria-Label='Abrir GitHub'>
+                <Button href={links.repo} variant='secondary' size='md' aria-label='Abrir GitHub'>
                   GitHub
                 </Button>
               )}
