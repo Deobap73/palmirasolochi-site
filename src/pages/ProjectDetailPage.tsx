@@ -90,6 +90,9 @@ const ProjectDetailPage: React.FC = () => {
     excerpt,
   } = project;
 
+  // Novo: descrição rica proveniente do JSON
+  const descriptionHtml = (project as unknown as { descriptionHtml?: string })?.descriptionHtml;
+
   return (
     <main className='projDetail' aria-labelledby='projDetail-title'>
       {/* HERO 16:9 */}
@@ -153,11 +156,28 @@ const ProjectDetailPage: React.FC = () => {
       {/* CONTENT */}
       <article className='projDetail__content' aria-label='Conteúdo do projeto'>
         <h2 className='projDetail__h2'>Descrição</h2>
-        <p className='projDetail__p'>
-          {description ||
-            'Este projeto ainda não possui descrição detalhada. Em breve serão adicionadas notas técnicas, aprendizagens e próximos passos.'}
-        </p>
+
+        {descriptionHtml ? (
+          <div
+            className='projDetail__rich'
+            // Conteúdo controlado pelo próprio projeto. Evita inserir HTML de terceiros.
+            dangerouslySetInnerHTML={{ __html: descriptionHtml }}
+          />
+        ) : (
+          <p className='projDetail__p'>
+            {description ||
+              'Este projeto ainda não possui descrição detalhada. Em breve serão adicionadas notas técnicas, aprendizagens e próximos passos.'}
+          </p>
+        )}
       </article>
+      <Button
+        className='projDetail__action'
+        href='/projects'
+        variant='secondary'
+        size='md'
+        aria-label='Voltar à página Sobre'>
+        Voltar
+      </Button>
     </main>
   );
 };

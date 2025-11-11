@@ -11,12 +11,13 @@
     "links": { "repo": "https://github.com/Pssolochi82/TestLab", "live": "#" },
     "createdAt": "2024-09-10T12:00:00.000Z",
     "updatedAt": "2025-01-15T09:15:00.000Z",
-    "media": { "imageFile": "mock1.webp", "imageAlt": "Sistema de Gestão de Testes" }
+    "media": { "imageFile": "mock1.webp", "imageAlt": "Sistema de Gestão de Testes" },
+    "descriptionHtml": "<h3>💡 Sobre o projeto</h3><p>O TestLab é um ambiente de testes automatizados desenvolvido em <strong>Python</strong> + <strong>Pytest</strong> + <strong>Selenium</strong>. Simula cenários reais de validação, integrando relatórios visuais em HTML e cobertura de código.</p><h3>⚙️ Tecnologias utilizadas</h3><ul><li>🧠 Pytest + Pytest-HTML + Pytest-Cov</li><li>🌐 Selenium WebDriver + WebDriver Manager</li><li>💾 Python 3.13</li><li>📈 Relatórios HTML e Métricas de Cobertura</li></ul>"
   },
   {
     "id": "2",
     "slug": "Clínica-Esperança",
-    "title": "App de Agendamento",
+    "title": "ClínicaEsperança, App de Agendamento",
     "subtitle": " Projeto PHP + MySQL",
     "excerpt": "CRUD completo de funcionários com upload de fotografias, interface clínica e README profissional. Projeto em contexto de aula (IEFP 2025).",
     "tags": ["PHP", "MySQL", "CRUD"],
@@ -24,7 +25,8 @@
     "status": "completed",
     "links": { "repo": "https://github.com/Pssolochi82/Clinica_PHP_MySQL", "live": "#" },
     "createdAt": "2024-11-05T12:00:00.000Z",
-    "media": { "imageFile": "mock2.webp", "imageAlt": "App de Agendamento" }
+    "media": { "imageFile": "mock2.webp", "imageAlt": "App de Agendamento" },
+    "descriptionHtml": "<h3>🏥 Sistema de Gestão Clínica</h3><p>Aplicação Web desenvolvida em <strong>PHP</strong> + <strong>MySQL</strong> para a gestão de funcionários de uma clínica.</p><p>Permite inserir, listar, editar e eliminar registos, bem como associar uma fotografia a cada funcionário.<p/><p>🧩 Projeto realizado no contexto de aula, durante a formação Técnico de Programação – IEFP (2025).<p/><h3>💡 Objetivo do Projeto</h3><p>Criar uma aplicação Web funcional que aceda a uma base de dados MySQL e implemente rotinas em PHP para:<p/><ul><li>Registo de funcionários 🧑‍⚕️</li><li>Listagem completa 💼</li><li>Edição e eliminação de registos ✏️🗑️</li><li>Upload e visualização de fotografia 📸</li></ul><p>Este projeto foi desenvolvido em ambiente de aprendizagem prática, integrando os conhecimentos adquiridos nas unidades de formação de Desenvolvimento Web, Bases de Dados e Programação em PHP.<p/>"
   },
   {
     "id": "3",
@@ -35,9 +37,10 @@
     "tags": ["JavaScript", "Lógica"],
     "category": "mainframe",
     "status": "in-progress",
-    "links": { "repo": "https://github.com/" },
+    "links": { "repo": "https://github.com/Pssolochi82/ContaBancariaJS" },
     "createdAt": "2025-02-12T09:00:00.000Z",
-    "media": { "imageFile": "mock3.webp", "imageAlt": "Sistema Bancário COBOL" }
+    "media": { "imageFile": "mock3.webp", "imageAlt": "Sistema Bancário COBOL" },
+    "descriptionHtml": ""
   },
   {
     "id": "4",
@@ -50,6 +53,7 @@
     "status": "in-progress",
     "links": { "repo": "https://github.com/Pssolochi82/BatalhaNaval-C" },
     "createdAt": "2025-02-12T09:00:00.000Z",
-    "media": { "imageFile": "mock4.webp", "imageAlt": "Sistema Bancário COBOL" }
+    "media": { "imageFile": "mock4.webp", "imageAlt": "Sistema Bancário COBOL" },
+    "descriptionHtml": ""
   }
 ]
