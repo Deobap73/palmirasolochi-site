@@ -24,6 +24,18 @@
     color: var(--color-text-muted, #475569);
   }
 
+  &__select {
+    width: 50%;
+    margin-top: 1rem;
+    border: 1px solid var(--color-border, #dccfc2);
+    border-radius: var(--radius-sm, 6px);
+    padding: var(--s-10, 10px) var(--s-12, 12px);
+    background: #fff;
+    color: var(--color-text, #2f2a28);
+    outline: none;
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+
   &__actions {
     margin-top: var(--space-md, 1rem);
     background: var(--color-primary);

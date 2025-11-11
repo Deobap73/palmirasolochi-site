@@ -96,9 +96,9 @@ const CertificatesPage: React.FC = () => {
             className='certificatesPage__controls'
             role='group'
             aria-label='Selecionar certificado'>
-            <label htmlFor='cert-select' className='certificatesPage__label'>
+            {/* <label htmlFor='cert-select' className='certificatesPage__label'>
               Certificado
-            </label>
+            </label> */}
             <select
               id='cert-select'
               className='certificatesPage__select'
