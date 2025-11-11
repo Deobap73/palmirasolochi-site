@@ -7,6 +7,8 @@ import AboutPage from './pages/AboutPage';
 import ProjectsPage from './pages/ProjectsPage';
 import ContactPage from './pages/ContactPage';
 import ProjectDetailPage from './pages/ProjectDetailPage';
+import CurriculumPage from './pages/CurriculumPage';
+import CertificatesPage from './pages/CertificatesPage';
 
 const App: React.FC = () => {
   return (
@@ -17,6 +19,9 @@ const App: React.FC = () => {
         <Route path='/projects' element={<ProjectsPage />} />
         <Route path='/projects/:slug' element={<ProjectDetailPage />} />
         <Route path='/contact' element={<ContactPage />} />
+        {/* rotas para PDFs embutidos */}
+        <Route path='/curriculum' element={<CurriculumPage />} />
+        <Route path='/certificados' element={<CertificatesPage />} />
       </Route>
       <Route path='*' element={<Navigate to='/' replace />} />
     </Routes>

@@ -24,8 +24,21 @@
     color: var(--color-text-muted, #475569);
   }
 
-  &__viewer {
-    // O PdfViewer gere altura e bordas
+  &__actions {
+    margin-top: var(--space-md, 1rem);
+    background: var(--color-primary);
+    color: #fff;
+    border: 1px solid var(--color-primary);
+    padding: calc(var(--s-4) + 1px) var(--s-8);
+    box-shadow: var(--shadow-sm);
+
+    &::after {
+      display: none;
+    }
+
+    &:hover {
+      background: color-mix(in srgb, var(--color-primary) 92%, #fff 8%);
+    }
   }
 }
 

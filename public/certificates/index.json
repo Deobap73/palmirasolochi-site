@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "items": [
+    {
+      "id": "certificate-rvcc",
+      "title": "Certificado de Qualificações RVCC",
+      "src": "/certificates/Certificado_de_Qualificações_RVCC.pdf"
+    },
+    {
+      "id": "certificate-Cambridge",
+      "title": "Certificado da Cambridge",
+      "src": "/certificates/Certificado_da_Cambridge.pdf"
+    },
+    {
+      "id": "certificate-qtv2",
+      "title": "QualityTester-v2",
+      "src": "/certificates/Certificado-QualityTester-v2.pdf"
+    },
+    {
+      "id": "certificate-qtv2",
+      "title": "Automação Teste de API",
+      "src": "/certificates/Certificado_Curso_de_Automação_Teste_de_API_com_Cypress.pdf"
+    },
+    {
+      "id": "certificate-ST",
+      "title": "SoftwareTesting",
+      "src": "/certificates/Certificado-SoftwareTesting.pdf"
+    },
+    {
+      "id": "certificate-J+X",
+      "title": "Jira +Xray",
+      "src": "/certificates/Certificado_Jira_+Xray.pdf"
+    },
+    {
+      "id": "certificate-B_eX",
+      "title": "BDD eXperience",
+      "src": "/certificates/Certificado_BDD_eXperience.pdf"
+    },
+    {
+      "id": "certificate-HrwBa",
+      "title": "Hardware Basics",
+      "src": "/certificates/Computer_Hardware_Basics_Update_Cisco_Academy.pdf"
+    }
+  ]
+}
