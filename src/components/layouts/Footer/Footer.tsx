@@ -48,7 +48,9 @@ const Footer: React.FC = () => {
                 <a
                   className='footer__link'
                   href='https://www.linkedin.com/in/palmira-solochi-79a1a3317/'
-                  aria-label='LinkedIn'>
+                  aria-label='LinkedIn'
+                  target='_blank'
+                  rel='noopener noreferrer'>
                   LinkedIn
                 </a>
               </li>
@@ -56,7 +58,9 @@ const Footer: React.FC = () => {
                 <a
                   className='footer__link'
                   href='https://github.com/Pssolochi82'
-                  aria-label='GitHub'>
+                  aria-label='GitHub'
+                  target='_blank'
+                  rel='noopener noreferrer'>
                   GitHub
                 </a>
               </li>

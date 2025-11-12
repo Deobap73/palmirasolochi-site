@@ -2,11 +2,6 @@
   "version": 1,
   "items": [
     {
-      "id": "certificate-rvcc",
-      "title": "Certificado de Qualificações RVCC",
-      "src": "/certificates/Certificado_de_Qualificações_RVCC.pdf"
-    },
-    {
       "id": "certificate-Cambridge",
       "title": "Certificado da Cambridge",
       "src": "/certificates/Certificado_da_Cambridge.pdf"

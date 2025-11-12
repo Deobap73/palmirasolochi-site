@@ -121,7 +121,13 @@ const ProjectDetailPage: React.FC = () => {
                 </Button>
               )}
               {links?.repo && (
-                <Button href={links.repo} variant='secondary' size='md' aria-label='Abrir GitHub'>
+                <Button
+                  href={links.repo}
+                  variant='secondary'
+                  size='md'
+                  aria-label='Abrir GitHub'
+                  target='_blank'
+                  rel='noopener noreferrer'>
                   GitHub
                 </Button>
               )}
