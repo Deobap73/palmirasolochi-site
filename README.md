@@ -142,9 +142,9 @@ This project is part of my professional front-end developer portfolio, demonstra
 
 ## 📩 Contact
 
-Email: your.email@example.com  
-LinkedIn: https://linkedin.com/in/your-profile  
-GitHub: https://github.com/your-user
+Email: mailto:contact@deolindobaptista.com
+LinkedIn: https://www.linkedin.com/in/deolindobaptista/
+GitHub: https://github.com/Deobap73
 
 ---
 
