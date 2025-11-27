@@ -5,6 +5,12 @@ import React from 'react';
 import './HeroAbout.scss';
 import Button from '../../common/Button/Button';
 
+// Definição para um botão de CTA
+interface CtaButton {
+  label: string;
+  href: string;
+}
+
 export interface HeroAboutProps {
   title: string;
   subtitle?: string;
@@ -12,6 +18,9 @@ export interface HeroAboutProps {
   imageSrc: string;
   imageAlt: string;
   inverted?: boolean;
+  // PROPRIEDADES DE CTA INCLUÍDAS
+  ctaPrimary: CtaButton;
+  ctaSecondary?: CtaButton; // Agora opcional, como é usado no AboutPage
 }
 
 const HeroAbout: React.FC<HeroAboutProps> = ({
@@ -21,10 +30,11 @@ const HeroAbout: React.FC<HeroAboutProps> = ({
   imageSrc,
   imageAlt,
   inverted = false,
+  // DESESTRUTURAR as props ctaPrimary e ctaSecondary
+  ctaPrimary,
+  ctaSecondary,
 }) => {
-  // CTAs fixos, ignoram qualquer prop externa
-  const ctaPrimary = { label: 'Curriculum', href: '/curriculum' };
-  const ctaSecondary = { label: 'Certificados', href: '/certificados' };
+  // REMOVIDO: CTAs fixos, que ignoravam props externas.
 
   return (
     <section
@@ -42,9 +52,12 @@ const HeroAbout: React.FC<HeroAboutProps> = ({
           <Button href={ctaPrimary.href} variant='primary' size='lg'>
             {ctaPrimary.label}
           </Button>
-          <Button href={ctaSecondary.href} variant='secondary' size='lg'>
-            {ctaSecondary.label}
-          </Button>
+          {/* Renderizar ctaSecondary apenas se for fornecido */}
+          {ctaSecondary && (
+            <Button href={ctaSecondary.href} variant='secondary' size='lg'>
+              {ctaSecondary.label}
+            </Button>
+          )}
         </div>
       </div>
 

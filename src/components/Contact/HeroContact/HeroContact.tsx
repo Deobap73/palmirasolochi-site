@@ -40,7 +40,7 @@ const HeroContact: React.FC<HeroContactProps> = ({
             <h2 id='hero-contact-title' className='heroContact__title'>
               {title}
             </h2>
-            <p className='heroContact__text'>{text}</p>
+            <div className='heroContact__text'>{text}</div>
             <Button
               className='heroContact__btn'
               aria-label={ctaLabel}

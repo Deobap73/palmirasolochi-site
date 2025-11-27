@@ -10,13 +10,18 @@ export interface ContactPayload {
 
 /**
  * sendContact
- * Envia o formulário de contacto ao backend Express via Resend.
+ * Sends contact form to Express backend using Resend.
  */
 export async function sendContact(payload: ContactPayload): Promise<void> {
-  const baseUrl = import.meta.env.VITE_API_BASE_URL;
-  if (!baseUrl) throw new Error('VITE_API_BASE_URL não definido');
+  const rawBaseUrl = import.meta.env.VITE_API_BASE_URL;
+  if (!rawBaseUrl) {
+    throw new Error('VITE_API_BASE_URL não definido');
+  }
 
-  const res = await fetch(`${baseUrl}/contact`, {
+  // Remove trailing slashes to avoid "//"
+  const baseUrl = rawBaseUrl.replace(/\/+$/, '');
+
+  const res = await fetch(`${baseUrl}/api/contact`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload),
