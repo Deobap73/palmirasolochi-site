@@ -16,7 +16,7 @@
   }
 
   @media (min-width: 960px) {
-    padding: var(--s-40, 40px) 0;
+    padding: var(--s-40, 40px);
 
     &__grid {
       grid-template-columns: 1fr 1fr;

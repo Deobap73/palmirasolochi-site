@@ -1,15 +1,26 @@
 // src/components/Home/Hero/Hero.scss
 .hero {
   position: relative;
-  padding-block: var(--s-16);
-  padding-inline: var(--s-12);
-  margin: 0 var(--s-8);
   padding: var(--s-16) var(--s-12);
+
+  // MOBILE FIRST: auto height
+  height: auto;
+  min-height: 0;
+
   @media (min-width: 768px) {
     margin: 0 var(--s-32);
+    // Maintain auto height below 980px
+    height: auto;
   }
 
-  /* ===== Base (mobile-first): STACKED ===== */
+  @media (max-width: 979px) {
+    // Remove fixed height rules for mobile
+    margin: 0 var(--s-32);
+    min-height: 0;
+    height: auto;
+  }
+
+  // ===== Base (mobile-first): STACKED LAYOUT =====
   &__stage {
     position: relative;
     max-width: var(--layout-max-width);
@@ -32,7 +43,7 @@
     display: block;
   }
 
-  /* CARD */
+  // CARD STYLES
   &__card {
     background: var(--color-bg-light);
     border: 1px solid var(--color-border);
@@ -73,13 +84,17 @@
     margin-top: var(--s-8);
   }
 
-  /* ===== Desktop: ABSOLUTE overlay ===== */
+  // ===== Desktop: ABSOLUTE OVERLAY + FIXED HEIGHT =====
   @media (min-width: 980px) {
+    // FIXED HEIGHT ONLY ABOVE 980px
+    height: 37.5rem; // 600px
+    min-height: 37.5rem;
+
     &__stage {
       min-block-size: clamp(22rem, 40vw, 46rem);
     }
 
-    /* padrão: imagem à ESQUERDA, card à DIREITA */
+    // Default: image on LEFT, card on RIGHT
     &__media {
       position: absolute;
       top: 0;
@@ -97,7 +112,7 @@
       margin-top: 0;
     }
 
-    /* inverso: imagem à DIREITA, card à ESQUERDA */
+    // Inverse: image on RIGHT, card on LEFT
     &.hero--inverse {
       .hero__media {
         left: auto;
@@ -110,73 +125,69 @@
     }
   }
 
-  /* ===== ≥1024px: mantemos o teu layout, com *clamp* para não sair da viewport ===== */
+  // ===== ≥1024px: Maintain layout with *clamp* to prevent viewport overflow =====
   @media (min-width: 1024px) {
-    /* padrão (não inverso) */
+    // Maintain fixed height
+    height: 37.5rem;
+    min-height: 37.5rem;
+
+    // Default (non-inverse)
     &__media {
       inline-size: 70%;
-      /* continua ancorada à esquerda (left:0 herdado do bloco anterior) */
+      // remains anchored to left (left:0 inherited from previous block)
     }
 
     &__card {
-      /* inline-size: 50%; */
-      /* Preferência: 60rem; Não menor que a margem interna; Não maior que o ponto em que o card sairia da direita */
       left: 55%;
       right: auto;
     }
 
-    /* inverso (AboutPage) */
+    // Inverse (AboutPage)
     &.hero--inverse {
       .hero__media {
         inline-size: 70%;
-        /* Preferência: 40rem; limitado às margens para não sair pela esquerda nem tocar a direita */
-        left: clamp(
-          var(--s-12),
-          40rem,
-          calc(100% - var(--s-12) - 90%) /* 100% - padding - largura da imagem */
-        );
+        // Preference: 40rem; limited by margins to prevent overflow
+        left: clamp(var(--s-12), 40rem, calc(100% - var(--s-12) - 90%));
         right: auto;
       }
 
       .hero__card {
         inline-size: 50%;
-        /* Preferência: 27rem a partir da direita; clamp garante que não encosta/ultrapassa */
+        // Preference: 27rem from right; clamp ensures no overlap/overflow
         right: clamp(var(--s-12), 27rem, calc(100% - var(--s-12) - 50%));
         left: auto;
       }
     }
   }
-  /* ===== ≥1200px: mantemos o teu layout, com *clamp* para não sair da viewport ===== */
+
+  // ===== ≥1200px: Maintain layout with *clamp* to prevent viewport overflow =====
   @media (min-width: 1200px) {
-    /* padrão (não inverso) */
+    // Maintain fixed height
+    height: 37.5rem;
+    min-height: 37.5rem;
+
+    // Default (non-inverse)
     &__media {
       inline-size: 70%;
-      /* continua ancorada à esquerda (left:0 herdado do bloco anterior) */
     }
 
     &__card {
-      /* inline-size: 50%; */
-      /* Preferência: 60rem; Não menor que a margem interna; Não maior que o ponto em que o card sairia da direita */
       left: 55%;
       right: auto;
     }
 
-    /* inverso (AboutPage) */
+    // Inverse (AboutPage)
     &.hero--inverse {
       .hero__media {
         inline-size: 90%;
-        /* Preferência: 40rem; limitado às margens para não sair pela esquerda nem tocar a direita */
-        left: clamp(
-          var(--s-12),
-          40rem,
-          calc(100% - var(--s-12) - 90%) /* 100% - padding - largura da imagem */
-        );
+        // Preference: 40rem; limited by margins to prevent left overflow or right touching
+        left: clamp(var(--s-12), 40rem, calc(100% - var(--s-12) - 90%));
         right: auto;
       }
 
       .hero__card {
         inline-size: 50%;
-        /* Preferência: 27rem a partir da direita; clamp garante que não encosta/ultrapassa */
+        // Preference: 27rem from right; clamp ensures no overlap/overflow
         right: clamp(var(--s-12), 27rem, calc(100% - var(--s-12) - 50%));
         left: auto;
       }

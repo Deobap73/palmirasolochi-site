@@ -3,8 +3,14 @@
   margin: 0 var(--s-4);
   padding: var(--s-8) var(--s-6);
 
+  // MOBILE FIRST: auto height
+  height: auto;
+  min-height: 0;
+
   @media (min-width: 768px) {
     margin: 0 var(--s-12);
+    // Maintain auto height below 900px
+    height: auto;
   }
 
   &__grid {
@@ -16,7 +22,7 @@
   }
 
   &__figure {
-    max-width: 400px;
+    max-width: 25rem; // 400px
     margin: 0;
     border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
@@ -66,6 +72,10 @@
   }
 
   @media (min-width: 900px) {
+    // FIXED HEIGHT ONLY ABOVE 900px
+    height: 37.5rem; // 600px
+    min-height: 37.5rem;
+
     padding: var(--s-16) var(--s-64);
 
     &__grid {
@@ -75,11 +85,13 @@
 
     &__figure {
       order: 1;
+      // Image 10% larger - increased max-width
+      max-width: 27.5rem; // 440px (400px + 10%)
     }
 
     &__card {
       order: 2;
-      max-width: 28.125rem;
+      max-width: 28.125rem; // 450px
       justify-self: center;
     }
   }

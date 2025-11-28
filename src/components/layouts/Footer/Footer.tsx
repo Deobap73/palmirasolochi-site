@@ -7,7 +7,7 @@ import './Footer.scss';
 
 // Passo 1: Import image.
 import LogoWebP from '../../../assets/Logo.webp';
-import LogoLegal from '../../../assets/theHumanTechBlogLogo.webp';
+import LogoLegal from '../../../assets/logo_theHumanTechDigitals.svg';
 // -----------------------------------------------------------------
 
 const Footer: React.FC = () => {
@@ -76,7 +76,8 @@ const Footer: React.FC = () => {
 
       <div className='footer__bottom'>
         <small className='footer__legal'>
-          © {year} Todos os direitos reservados. Desenvolvido por &nbsp;&nbsp;&nbsp;
+          © {year} Todos os direitos reservados. Desenvolvido por &nbsp;&nbsp;&nbsp; -
+          &nbsp;&nbsp;&nbsp;
           <a
             className='footer__link--legal'
             href='https://thehumantechblog.com/about'
@@ -87,7 +88,6 @@ const Footer: React.FC = () => {
               alt='Logótipo The Human Tech Blog'
               className='footer__logo--legal'
             />
-            &nbsp; <span className='footer__link--name'>The Human Tech Digitals.</span>
           </a>
         </small>
       </div>
