@@ -12,23 +12,50 @@ import LogoWebP from '../../../assets/Logo.webp';
 const Header: React.FC = () => {
   const [open, setOpen] = useState(false);
   const navRef = useRef<HTMLDivElement | null>(null);
+  const toggleRef = useRef<HTMLButtonElement | null>(null);
   const { pathname } = useLocation();
 
-  // Fechar o menu ao navegar
+  // Fecha o menu ao navegar
   useEffect(() => {
     setOpen(false);
   }, [pathname]);
 
-  // Fechar menu ao clicar fora (mobile)
+  // Fecha o menu ao clicar fora
   useEffect(() => {
     function onClickOutside(e: MouseEvent) {
       if (!open) return;
-      if (navRef.current && !navRef.current.contains(e.target as Node)) {
+
+      const target = e.target as Node | null;
+      if (!target) return;
+
+      // Se clicou dentro da nav, não faz nada
+      if (navRef.current && navRef.current.contains(target)) {
+        return;
+      }
+
+      // Se clicou no botão do menu, não faz nada
+      if (toggleRef.current && toggleRef.current.contains(target)) {
+        return;
+      }
+
+      setOpen(false);
+    }
+
+    document.addEventListener('click', onClickOutside);
+    return () => document.removeEventListener('click', onClickOutside);
+  }, [open]);
+
+  // Fecha com tecla Escape
+  useEffect(() => {
+    function onKeyDown(e: KeyboardEvent) {
+      if (!open) return;
+      if (e.key === 'Escape') {
         setOpen(false);
       }
     }
-    document.addEventListener('click', onClickOutside);
-    return () => document.removeEventListener('click', onClickOutside);
+
+    document.addEventListener('keydown', onKeyDown);
+    return () => document.removeEventListener('keydown', onKeyDown);
   }, [open]);
 
   return (
@@ -40,10 +67,12 @@ const Header: React.FC = () => {
 
         {/* Botão mobile */}
         <button
-          className='header__toggle'
-          aria-label='Abrir/Fechar menu'
+          ref={toggleRef}
+          className={`header__toggle ${open ? 'header__toggle--open' : ''}`}
+          aria-label={open ? 'Fechar menu' : 'Abrir menu'}
           aria-expanded={open}
           aria-controls='primary-nav'
+          type='button'
           onClick={() => setOpen((v) => !v)}>
           <span className='header__bar' aria-hidden='true' />
           <span className='header__bar' aria-hidden='true' />
