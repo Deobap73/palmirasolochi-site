@@ -26,8 +26,9 @@ const Hero: React.FC<HeroProps> = ({
   title,
   subtitle = '',
   text = '',
-  ctaPrimary = { label: 'Ver Projetos', href: '/projects' },
-  ctaSecondary = { label: 'Sobre Mim', href: '/about' },
+  // relative paths para funcionar dentro de /pt e /en
+  ctaPrimary = { label: 'Ver Projetos', href: 'projects' },
+  ctaSecondary = { label: 'Sobre Mim', href: 'about' },
   imageSrc,
   imageAlt,
   inverse = false,

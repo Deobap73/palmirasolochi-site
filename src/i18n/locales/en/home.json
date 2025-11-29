@@ -1,5 +1,8 @@
 {
-  "heroTitle": "I craft digital experiences with clarity and impact",
-  "heroSubtitle": "Frontend Developer specialized in React, Next.js and TypeScript",
-  "ctaMore": "Learn more"
+  "heroTitle": "Palmira Solochi",
+  "heroSubtitle": "Portfolio & Experience",
+  "heroText": "QA professional and developer in training (COBOL, mainframe, Java backend). I build elegant and functional interfaces with a strong focus on detail, accessibility and performance.",
+  "heroCtaPrimary": "View projects",
+  "heroCtaSecondary": "About me",
+  "heroImageAlt": "Highlight portrait"
 }

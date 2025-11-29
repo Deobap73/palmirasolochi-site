@@ -2,81 +2,78 @@
 'use strict';
 
 import React, { useEffect } from 'react';
-import { Route, Routes, Navigate, useParams } from 'react-router-dom';
+import { Routes, Route, Navigate, useParams } from 'react-router-dom';
 
 import MainLayout from './components/layouts/MainLayout';
+import ScrollToTop from './components/common/ScrollToTop/ScrollToTop';
+
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 import ProjectsPage from './pages/ProjectsPage';
-import ContactPage from './pages/ContactPage';
 import ProjectDetailPage from './pages/ProjectDetailPage';
+import ContactPage from './pages/ContactPage';
 import CurriculumPage from './pages/CurriculumPage';
 import CertificatesPage from './pages/CertificatesPage';
-
-import ScrollToTop from './components/common/ScrollToTop/ScrollToTop';
 
 import i18n from './i18n/index';
 import { Lang } from './utils/routePaths';
 
-// Wrapper que sincroniza i18n com a língua da URL
-function LangWrapper() {
+// Layout por língua: sincroniza i18n e delega no MainLayout (que usa <Outlet />)
+const LangLayout: React.FC = () => {
   const { lang } = useParams<{ lang: Lang }>();
 
   useEffect(() => {
-    if (lang && ['pt', 'en'].includes(lang)) {
+    if (lang && (lang === 'pt' || lang === 'en')) {
       i18n.changeLanguage(lang);
     }
   }, [lang]);
 
-  return (
-    <>
-      <ScrollToTop />
-      <MainLayout>
-        <Routes>
-          {/* Home */}
-          <Route path='' element={<HomePage />} />
-
-          {/* About */}
-          <Route path='sobre' element={<AboutPage />} />
-          <Route path='about' element={<AboutPage />} />
-
-          {/* Projects */}
-          <Route path='projetos' element={<ProjectsPage />} />
-          <Route path='projects' element={<ProjectsPage />} />
-
-          {/* Project Detail */}
-          <Route path='projetos/:slug' element={<ProjectDetailPage />} />
-          <Route path='projects/:slug' element={<ProjectDetailPage />} />
-
-          {/* Contact */}
-          <Route path='contacto' element={<ContactPage />} />
-          <Route path='contact' element={<ContactPage />} />
-
-          {/* Curriculum */}
-          <Route path='curriculo' element={<CurriculumPage />} />
-          <Route path='resume' element={<CurriculumPage />} />
-
-          {/* Certificates */}
-          <Route path='certificados' element={<CertificatesPage />} />
-          <Route path='certificates' element={<CertificatesPage />} />
-        </Routes>
-      </MainLayout>
-    </>
-  );
-}
+  return <MainLayout />;
+};
 
 const App: React.FC = () => {
   return (
-    <Routes>
-      {/* Redireciona / para /pt */}
-      <Route path='/' element={<Navigate to='/pt' replace />} />
+    <>
+      <ScrollToTop />
 
-      {/* Todas as rotas dentro do idioma */}
-      <Route path='/:lang/*' element={<LangWrapper />} />
+      <Routes>
+        {/* Redireciona / para /pt */}
+        <Route path='/' element={<Navigate to='/pt' replace />} />
 
-      {/* Wildcard → redireciona p/ pt */}
-      <Route path='*' element={<Navigate to='/pt' replace />} />
-    </Routes>
+        {/* Rotas por idioma, com MainLayout + Outlet */}
+        <Route path='/:lang' element={<LangLayout />}>
+          {/* Home: /pt e /en */}
+          <Route index element={<HomePage />} />
+
+          {/* About: /pt/sobre e /en/about */}
+          <Route path='sobre' element={<AboutPage />} />
+          <Route path='about' element={<AboutPage />} />
+
+          {/* Projects list: /pt/projetos e /en/projects */}
+          <Route path='projetos' element={<ProjectsPage />} />
+          <Route path='projects' element={<ProjectsPage />} />
+
+          {/* Project detail: /pt/projetos/:slug e /en/projects/:slug */}
+          <Route path='projetos/:slug' element={<ProjectDetailPage />} />
+          <Route path='projects/:slug' element={<ProjectDetailPage />} />
+
+          {/* Contact: /pt/contacto e /en/contact */}
+          <Route path='contacto' element={<ContactPage />} />
+          <Route path='contact' element={<ContactPage />} />
+
+          {/* Curriculum: /pt/curriculo e /en/resume */}
+          <Route path='curriculo' element={<CurriculumPage />} />
+          <Route path='resume' element={<CurriculumPage />} />
+
+          {/* Certificates: /pt/certificados e /en/certificates */}
+          <Route path='certificados' element={<CertificatesPage />} />
+          <Route path='certificates' element={<CertificatesPage />} />
+        </Route>
+
+        {/* Qualquer outra rota cai em /pt */}
+        <Route path='*' element={<Navigate to='/pt' replace />} />
+      </Routes>
+    </>
   );
 };
 

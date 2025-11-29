@@ -5,18 +5,20 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link, NavLink, useLocation, useNavigate, useParams } from 'react-router-dom';
 import './Header.scss';
 
-// Import image
 import LogoWebP from '../../../assets/Logo.webp';
-import { buildPath, getRouteInfoFromPath, Lang } from '../../../utils/routePaths';
+import { buildPath, Lang } from '../../../utils/routePaths';
+import { useTranslation } from 'react-i18next';
 // -----------------------------------------------------------------
 
 const Header: React.FC = () => {
   const [open, setOpen] = useState(false);
   const navRef = useRef<HTMLDivElement | null>(null);
   const toggleRef = useRef<HTMLButtonElement | null>(null);
+
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const { lang } = useParams<{ lang: Lang }>();
+  const { t } = useTranslation('common');
 
   const currentLang: Lang = lang === 'en' ? 'en' : 'pt';
 
@@ -63,9 +65,17 @@ const Header: React.FC = () => {
 
   const handleLanguageSwitch = () => {
     const nextLang: Lang = currentLang === 'pt' ? 'en' : 'pt';
-    const { key, slug } = getRouteInfoFromPath(pathname);
-    const targetPath = buildPath(key, nextLang, slug);
-    navigate(targetPath);
+
+    // troca apenas o prefixo /pt ou /en mantendo o resto
+    const match = pathname.match(/^\/(pt|en)(\/.*)?$/);
+    if (match) {
+      const rest = match[2] || '';
+      const targetPath = `/${nextLang}${rest}`;
+      navigate(targetPath);
+    } else {
+      // fallback caso alguém vá a uma rota sem prefixo
+      navigate(nextLang === 'pt' ? '/pt' : '/en');
+    }
   };
 
   return (
@@ -99,15 +109,17 @@ const Header: React.FC = () => {
           role='navigation'
           aria-label='Menu principal'>
           <NavLink to={buildPath('about', currentLang)} className='header__link'>
-            Sobre
+            {t('menu.about')}
           </NavLink>
+
           <NavLink to={buildPath('projects', currentLang)} className='header__link'>
-            Projetos
+            {t('menu.projects')}
           </NavLink>
+
           <NavLink
             to={buildPath('contact', currentLang)}
             className='header__link header__link--cta'>
-            Contacto
+            {t('menu.contact')}
           </NavLink>
 
           <button

@@ -1,6 +1,12 @@
 // src/pages/HomePage.tsx
+'use strict';
+
 import React from 'react';
 import '../pages/styles/Pages.scss';
+
+import { useTranslation } from 'react-i18next';
+import { useParams } from 'react-router-dom';
+import { Lang, buildPath } from '../utils/routePaths';
 
 // Components
 import Hero from '../components/Home/Hero/Hero';
@@ -17,21 +23,38 @@ import teaserImg from '../../src/assets/teaserImg.webp';
 // -----------------------------------------------------------------
 
 const HomePage: React.FC = () => {
+  const { t } = useTranslation('home');
+  const { lang } = useParams<{ lang: Lang }>();
+  const currentLang: Lang = lang === 'en' ? 'en' : 'pt';
+
   return (
     <section aria-labelledby='home-title' className='pagesGeneral'>
       <Hero
-        title='Palmira Solochi'
-        subtitle='Portfolio & Experiência'
-        text='QA Profissional · Programadora em formação (COBOL, Mainframe, Backend Java). Construo interfaces elegantes e funcionais com foco em detalhe, acessibilidade e performance.'
+        title={t('heroTitle')}
+        subtitle={t('heroSubtitle')}
+        text={t('heroText')}
+        ctaPrimary={{
+          label: t('heroCtaPrimary'),
+          href: buildPath('projects', currentLang),
+        }}
+        ctaSecondary={{
+          label: t('heroCtaSecondary'),
+          href: buildPath('about', currentLang),
+        }}
         imageSrc={hero1}
-        imageAlt='Fotografia de destaque'
+        imageAlt={t('heroImageAlt')}
       />
+
+      {/* Ainda em PT direto, podemos migrar para i18n numa próxima etapa */}
       <IntroBanner
         text='Transição de carreira do Direito para a Tecnologia, unindo análise rigorosa, clareza de comunicação e foco na qualidade. Formação concluída em Quality Assurance (QA) com experiência em testes manuais e automatizados (Selenium, Cypress, Cucumber, BDD). Atualmente a aprofundar COBOL, Mainframe, Java e Segurança.'
         align='center'
       />
+
       <DomainSkills imageSrc={skillsImg} imageAlt='Profissional a trabalhar com portátil' />
+
       <PhrasesBanner />
+
       <ProjectTeaser
         imageSrc={teaserImg}
         imageAlt='Pessoa a trabalhar ao portátil'
