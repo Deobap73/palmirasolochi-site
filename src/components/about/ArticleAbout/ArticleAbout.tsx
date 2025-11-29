@@ -7,10 +7,16 @@ import './ArticleAbout.scss';
 export interface ArticleAboutProps {
   imageSrc?: string;
   imageAlt?: string;
+  title?: string;
   paragraphs: string[];
 }
 
-const ArticleAbout: React.FC<ArticleAboutProps> = ({ imageSrc, imageAlt, paragraphs }) => {
+const ArticleAbout: React.FC<ArticleAboutProps> = ({
+  imageSrc,
+  imageAlt,
+  title = 'A minha história',
+  paragraphs,
+}) => {
   return (
     <section className='aboutArticle' aria-labelledby='about-article-title'>
       <div className='aboutArticle__inner'>
@@ -21,7 +27,7 @@ const ArticleAbout: React.FC<ArticleAboutProps> = ({ imageSrc, imageAlt, paragra
         )}
 
         <h2 id='about-article-title' className='aboutArticle__title'>
-          A minha história
+          {title}
         </h2>
 
         <div className='aboutArticle__content'>

@@ -1,0 +1,34 @@
+{
+  "hero": {
+    "title": "I am Palmira Solochi!",
+    "text": "From law to QA (Selenium, BDD) and programming (COBOL, Java). A story of career change, faith and determination that shows it is never too late to start again.",
+    "imageAlt": "Professional portrait of Palmira Solochi",
+    "ctaPrimaryLabel": "Let’s talk"
+  },
+  "intro": {
+    "ariaLabel": "Quote describing how I work",
+    "quotes": [
+      "If it is done with attention, it is not by accident.",
+      "I work with focus, clarity and the same energy."
+    ]
+  },
+  "article": {
+    "title": "My story",
+    "imageAlt": "Palmira Solochi introduction",
+    "paragraphs": [
+      "I am Palmira Solochi, a woman driven by faith in God, determination and a constant desire to grow.",
+      "I believe true success is born when we bring together technical competence, analytical rigor and human values.",
+      "After solid experience in law and executive secretarial work, I decided to change careers into technology, combining my ability for rigorous analysis, clear communication and a strong focus on quality.",
+      "I completed training in Quality Assurance (QA) with experience in manual and automated testing (Selenium, Cypress, Cucumber, BDD).",
+      "I am currently attending a technical programming course, deepening my knowledge of COBOL, mainframe, Java and security.",
+      "The path has not always been easy. I am a mother of three children and, even in the most challenging moments, I never gave up.",
+      "While working as an Uber driver, often between ten and fifteen hours a day, I stayed committed to my studies and to my faith. My belief in God has been and continues to be the fuel that pushes me forward with courage and purpose.",
+      "Today I see technology as a place where I can unite logic with empathy, technical discipline with human sensitivity. I believe technology is also a place for strong and persistent women, full of courage and faith, able to change the world around them.",
+      "“With faith in God and courage in her heart, a woman can turn any pain into a new beginning.”",
+      "  My message is simple:",
+      "      • It is never too late to start again.",
+      "      • Do not let fear or the opinion of others stop you from being who you are.",
+      "      • With grit, faith in God and determination, what seems impossible can turn into achievement."
+    ]
+  }
+}
