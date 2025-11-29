@@ -25,6 +25,7 @@ const LangLayout: React.FC = () => {
   useEffect(() => {
     if (lang && (lang === 'pt' || lang === 'en')) {
       i18n.changeLanguage(lang);
+      document.documentElement.lang = lang === 'en' ? 'en' : 'pt-PT';
     }
   }, [lang]);
 

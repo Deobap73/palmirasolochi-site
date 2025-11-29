@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Bloqueios específicos se um dia tiveres áreas privadas
+# Disallow: /admin/
+# Disallow: /api/
+
+Sitemap: https://palmirasolochi.com/sitemap.xml

@@ -3,7 +3,6 @@
 
 import React from 'react';
 
-// Components
 import HeroProjects from '../components/Projects/HeroProjects/HeroProjects';
 import IntroBannerProjects from '../components/Projects/IntroBannerProjects/IntroBannerProjects';
 import FiltersBar, { SortOption } from '../components/Projects/FiltersBar/FiltersBar';
@@ -11,14 +10,13 @@ import ProjectsGrid, { ProjectGridItem } from '../components/Projects/ProjectsGr
 import Pagination from '../components/Projects/Pagination/Pagination';
 import CtaBand from '../components/Projects/CtaBand/CtaBand';
 
-// Services
 import { listProjects } from '../services/projects';
 
-// Hero intacto
 import hero3 from '../assets/hero-3.webp';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { Lang, buildPath } from '../utils/routePaths';
+import Seo from '../components/common/Seo/Seo';
 
 const ProjectsPage: React.FC = () => {
   const { t } = useTranslation('projects');
@@ -27,7 +25,6 @@ const ProjectsPage: React.FC = () => {
 
   const introText = t('intro.html');
 
-  // estado
   const [q, setQ] = React.useState('');
   const [sort, setSort] = React.useState<SortOption>('newest');
   const [activeTags, setActiveTags] = React.useState<string[]>([]);
@@ -38,14 +35,12 @@ const ProjectsPage: React.FC = () => {
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState('');
 
-  // tags fixas por agora (names neutros)
   const tags = ['Python', 'PHP', 'C++', 'C#', 'QA', 'COBOL', 'Java'];
 
   const toggleTag = (tag: string) => {
     setActiveTags((prev) => (prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]));
   };
 
-  // carregar projetos
   React.useEffect(() => {
     let alive = true;
     async function load(): Promise<void> {
@@ -76,10 +71,8 @@ const ProjectsPage: React.FC = () => {
     return () => {
       alive = false;
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [t]);
 
-  // filtros
   const filtered = React.useMemo(() => {
     const query = q.toLowerCase();
     return projects.filter((p) => {
@@ -93,7 +86,6 @@ const ProjectsPage: React.FC = () => {
     });
   }, [projects, q, activeTags]);
 
-  // ordenar
   const sorted = React.useMemo(() => {
     const arr = [...filtered];
     if (sort === 'az') return arr.sort((a, b) => a.title.localeCompare(b.title));
@@ -103,7 +95,6 @@ const ProjectsPage: React.FC = () => {
     );
   }, [filtered, sort]);
 
-  // paginação
   const totalPages = Math.ceil(sorted.length / itemsPerPage) || 1;
   const startIndex = (page - 1) * itemsPerPage;
   const pageItems = sorted.slice(startIndex, startIndex + itemsPerPage);
@@ -113,67 +104,71 @@ const ProjectsPage: React.FC = () => {
   }, [q, sort, activeTags]);
 
   return (
-    <main aria-labelledby='projects-hero-title' className='pagesGeneral'>
-      <HeroProjects
-        title={t('hero.title')}
-        subtitle={t('hero.subtitle')}
-        text={t('hero.text')}
-        imageSrc={hero3}
-        imageAlt={t('hero.imageAlt')}
-        ctaPrimary={{
-          label: t('hero.ctaPrimaryLabel'),
-          href: 'https://github.com/Pssolochi82?tab=repositories',
-          target: '_blank',
-        }}
-        ctaSecondary={{
-          label: t('hero.ctaSecondaryLabel'),
-          href: 'https://github.com/Pssolochi82',
-          target: '_blank',
-        }}
-      />
+    <>
+      <Seo page='projects' lang={currentLang} />
 
-      <IntroBannerProjects text={introText} align='center' />
-
-      <FiltersBar
-        search={q}
-        onSearch={setQ}
-        sort={sort}
-        onSort={setSort}
-        tags={tags}
-        activeTags={activeTags}
-        onToggleTag={toggleTag}
-      />
-
-      {loading && <p role='status'>{t('list.loading')}</p>}
-      {!loading && error && <p role='alert'>{error}</p>}
-      {!loading && !error && <ProjectsGrid items={pageItems} emptyText={t('grid.emptyText')} />}
-
-      {!loading && !error && (
-        <Pagination
-          currentPage={page}
-          totalPages={totalPages}
-          onPageChange={setPage}
-          ariaLabel={t('pagination.ariaLabel')}
+      <main aria-labelledby='projects-hero-title' className='pagesGeneral'>
+        <HeroProjects
+          title={t('hero.title')}
+          subtitle={t('hero.subtitle')}
+          text={t('hero.text')}
+          imageSrc={hero3}
+          imageAlt={t('hero.imageAlt')}
+          ctaPrimary={{
+            label: t('hero.ctaPrimaryLabel'),
+            href: 'https://github.com/Pssolochi82?tab=repositories',
+            target: '_blank',
+          }}
+          ctaSecondary={{
+            label: t('hero.ctaSecondaryLabel'),
+            href: 'https://github.com/Pssolochi82',
+            target: '_blank',
+          }}
         />
-      )}
 
-      <CtaBand
-        title={t('ctaBand.title')}
-        text={t('ctaBand.text')}
-        primary={{
-          label: t('ctaBand.primaryLabel'),
-          href: buildPath('contact', currentLang),
-        }}
-        secondary={{
-          label: t('ctaBand.secondaryLabel'),
-          href: 'https://www.linkedin.com/in/palmirasolochi/',
-          target: '_blank',
-        }}
-        align='center'
-        tone='accent'
-        ariaLabel={t('ctaBand.ariaLabel')}
-      />
-    </main>
+        <IntroBannerProjects text={introText} align='center' />
+
+        <FiltersBar
+          search={q}
+          onSearch={setQ}
+          sort={sort}
+          onSort={setSort}
+          tags={tags}
+          activeTags={activeTags}
+          onToggleTag={toggleTag}
+        />
+
+        {loading && <p role='status'>{t('list.loading')}</p>}
+        {!loading && error && <p role='alert'>{error}</p>}
+        {!loading && !error && <ProjectsGrid items={pageItems} emptyText={t('grid.emptyText')} />}
+
+        {!loading && !error && (
+          <Pagination
+            currentPage={page}
+            totalPages={totalPages}
+            onPageChange={setPage}
+            ariaLabel={t('pagination.ariaLabel')}
+          />
+        )}
+
+        <CtaBand
+          title={t('ctaBand.title')}
+          text={t('ctaBand.text')}
+          primary={{
+            label: t('ctaBand.primaryLabel'),
+            href: buildPath('contact', currentLang),
+          }}
+          secondary={{
+            label: t('ctaBand.secondaryLabel'),
+            href: 'https://www.linkedin.com/in/palmirasolochi/',
+            target: '_blank',
+          }}
+          align='center'
+          tone='accent'
+          ariaLabel={t('ctaBand.ariaLabel')}
+        />
+      </main>
+    </>
   );
 };
 

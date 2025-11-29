@@ -10,6 +10,7 @@ import IntroBannerAbout from '../components/about/IntroBannerAbout/IntroBannerAb
 import ArticleAbout from '../components/about/ArticleAbout/ArticleAbout';
 
 import { Lang, buildPath } from '../utils/routePaths';
+import Seo from '../components/common/Seo/Seo';
 
 // Import image.
 import hero2 from '../../src/assets/hero-2.webp';
@@ -28,32 +29,35 @@ const AboutPage: React.FC = () => {
   }) as string[];
 
   return (
-    <main id='main' className='aboutPage' aria-labelledby='about-title'>
-      {/* HERO invertido — imagem à direita, card à esquerda */}
-      <HeroAbout
-        inverted
-        title={t('hero.title')}
-        text={t('hero.text')}
-        imageSrc={hero2}
-        imageAlt={t('hero.imageAlt')}
-        ctaPrimary={{
-          label: t('hero.ctaPrimaryLabel'),
-          href: buildPath('contact', currentLang),
-        }}
-        ctaSecondary={{
-          label: t('hero.ctaSecondaryLabel'), // ← NOVO
-          href: buildPath('certificates', currentLang), // ← NOVO
-        }}
-      />
+    <>
+      <Seo page='about' lang={currentLang} />
 
-      <IntroBannerAbout quotes={introQuotes} ariaLabel={t('intro.ariaLabel')} />
+      <main id='main' className='aboutPage' aria-labelledby='about-title'>
+        <HeroAbout
+          inverted
+          title={t('hero.title')}
+          text={t('hero.text')}
+          imageSrc={hero2}
+          imageAlt={t('hero.imageAlt')}
+          ctaPrimary={{
+            label: t('hero.ctaPrimaryLabel'),
+            href: buildPath('contact', currentLang),
+          }}
+          ctaSecondary={{
+            label: t('hero.ctaSecondaryLabel'),
+            href: buildPath('certificates', currentLang),
+          }}
+        />
 
-      <ArticleAbout
-        title={t('article.title')}
-        imageAlt={t('article.imageAlt')}
-        paragraphs={aboutParagraphs}
-      />
-    </main>
+        <IntroBannerAbout quotes={introQuotes} ariaLabel={t('intro.ariaLabel')} />
+
+        <ArticleAbout
+          title={t('article.title')}
+          imageAlt={t('article.imageAlt')}
+          paragraphs={aboutParagraphs}
+        />
+      </main>
+    </>
   );
 };
 

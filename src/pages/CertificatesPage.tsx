@@ -8,6 +8,7 @@ import Button from '../components/common/Button/Button';
 import { useSearchParams, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Lang, buildPath } from '../utils/routePaths';
+import Seo from '../components/common/Seo/Seo';
 
 type CertificateItem = {
   id: string;
@@ -90,58 +91,61 @@ const CertificatesPage: React.FC = () => {
   }
 
   return (
-    <main className='certificatesPage' id='main-content'>
-      <header className='certificatesPage__header'>
-        <h1 className='certificatesPage__title'>{t('title')}</h1>
-        <p className='certificatesPage__subtitle'>{t('subtitle')}</p>
+    <>
+      <Seo page='certificates' lang={currentLang} />
 
-        {!loading && !error && items.length > 0 && current && (
-          <div className='certificatesPage__controls' role='group' aria-label={t('controlsAria')}>
-            <select
-              id='cert-select'
-              className='certificatesPage__select'
-              value={current.id}
-              onChange={handleChange}>
-              {items.map((cert) => (
-                <option key={cert.id} value={cert.id}>
-                  {cert.title}
-                </option>
-              ))}
-            </select>
+      <main className='certificatesPage' id='main-content'>
+        <header className='certificatesPage__header'>
+          <h1 className='certificatesPage__title'>{t('title')}</h1>
+          <p className='certificatesPage__subtitle'>{t('subtitle')}</p>
+
+          {!loading && !error && items.length > 0 && current && (
+            <div className='certificatesPage__controls' role='group' aria-label={t('controlsAria')}>
+              <select
+                id='cert-select'
+                className='certificatesPage__select'
+                value={current.id}
+                onChange={handleChange}>
+                {items.map((cert) => (
+                  <option key={cert.id} value={cert.id}>
+                    {cert.title}
+                  </option>
+                ))}
+              </select>
+            </div>
+          )}
+
+          {loading && <p className='certificatesPage__status'>{t('loading')}</p>}
+
+          {!loading && error && (
+            <p className='certificatesPage__error'>{t('error', { message: error })}</p>
+          )}
+
+          {!loading && !error && items.length === 0 && (
+            <p className='certificatesPage__status'>{t('none')}</p>
+          )}
+
+          <Button
+            className='certificatesPage__actions'
+            href={buildPath('about', currentLang)}
+            variant='secondary'
+            size='md'
+            aria-label={t('backToAboutAria')}>
+            {t('backToAbout')}
+          </Button>
+        </header>
+
+        {!loading && !error && current && (
+          <div className='certificatesPage__viewer'>
+            <PdfViewer
+              src={current.src}
+              title={t('viewerTitle', { title: current.title })}
+              showHeading={false}
+            />
           </div>
         )}
-
-        {loading && <p className='certificatesPage__status'>{t('loading')}</p>}
-
-        {!loading && error && (
-          <p className='certificatesPage__error'>{t('error', { message: error })}</p>
-        )}
-
-        {!loading && !error && items.length === 0 && (
-          <p className='certificatesPage__status'>{t('none')}</p>
-        )}
-
-        {/* Botão voltar para /about multilíngua */}
-        <Button
-          className='certificatesPage__actions'
-          href={buildPath('about', currentLang)}
-          variant='secondary'
-          size='md'
-          aria-label={t('backToAboutAria')}>
-          {t('backToAbout')}
-        </Button>
-      </header>
-
-      {!loading && !error && current && (
-        <div className='certificatesPage__viewer'>
-          <PdfViewer
-            src={current.src}
-            title={t('viewerTitle', { title: current.title })}
-            showHeading={false}
-          />
-        </div>
-      )}
-    </main>
+      </main>
+    </>
   );
 };
 
