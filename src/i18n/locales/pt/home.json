@@ -4,5 +4,28 @@
   "heroText": "QA Profissional · Programadora em formação (COBOL, Mainframe, Backend Java). Construo interfaces elegantes e funcionais com foco em detalhe, acessibilidade e performance.",
   "heroCtaPrimary": "Ver Projetos",
   "heroCtaSecondary": "Sobre Mim",
-  "heroImageAlt": "Fotografia de destaque"
+  "heroImageAlt": "Fotografia de destaque",
+  "intro": {
+    "text": "Transição de carreira do Direito para a Tecnologia, unindo análise rigorosa, clareza de comunicação e foco na qualidade. Formação concluída em Quality Assurance (QA) com experiência em testes manuais e automatizados (Selenium, Cypress, Cucumber, BDD). Atualmente a aprofundar COBOL, Mainframe, Java e Segurança."
+  },
+  "projectsTeaser": {
+    "title": "Os meus projectos",
+    "text": "Trabalhos académicos, projetos pessoais e exercícios técnicos que demonstram competências em backend, bases de dados, automação de testes e desenvolvimento web.",
+    "ctaLabel": "Visite os meus projectos"
+  },
+  "domainSkills": {
+    "tag": "Domínios & Competências",
+    "mainframe": {
+      "title": "Mainframe & Backend",
+      "list": "COBOL · JCL · TSO/ISPF · Zowe · SQL · DB2"
+    },
+    "qa": {
+      "title": "QA & Automatização",
+      "list": "Selenium · Cypress · Cucumber · Gherkin · BDD · Jira · Xray · OWASP ZAP · Postman"
+    },
+    "web": {
+      "title": "Web & Linguagens",
+      "list": "Java · ASP.NET Core MVC · JavaScript · Git · GitHub · VS Code"
+    }
+  }
 }

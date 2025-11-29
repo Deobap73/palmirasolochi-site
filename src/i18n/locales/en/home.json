@@ -4,5 +4,28 @@
   "heroText": "QA professional and developer in training (COBOL, mainframe, Java backend). I build elegant and functional interfaces with a strong focus on detail, accessibility and performance.",
   "heroCtaPrimary": "View projects",
   "heroCtaSecondary": "About me",
-  "heroImageAlt": "Highlight portrait"
+  "heroImageAlt": "Highlight portrait",
+  "intro": {
+    "text": "Career transition from law to technology, combining rigorous analysis, clear communication and a strong focus on quality. Completed training in Quality Assurance (QA) with experience in manual and automated testing (Selenium, Cypress, Cucumber, BDD). Currently deepening COBOL, mainframe, Java and security."
+  },
+  "projectsTeaser": {
+    "title": "My projects",
+    "text": "Academic work, personal projects and technical exercises that demonstrate skills in backend, databases, automated testing and web development.",
+    "ctaLabel": "Visit my projects"
+  },
+  "domainSkills": {
+    "tag": "Domains & Skills",
+    "mainframe": {
+      "title": "Mainframe & Backend",
+      "list": "COBOL · JCL · TSO/ISPF · Zowe · SQL · DB2"
+    },
+    "qa": {
+      "title": "QA & Automation",
+      "list": "Selenium · Cypress · Cucumber · Gherkin · BDD · Jira · Xray · OWASP ZAP · Postman"
+    },
+    "web": {
+      "title": "Web & Languages",
+      "list": "Java · ASP.NET Core MVC · JavaScript · Git · GitHub · VS Code"
+    }
+  }
 }

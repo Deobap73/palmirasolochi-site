@@ -45,11 +45,7 @@ const HomePage: React.FC = () => {
         imageAlt={t('heroImageAlt')}
       />
 
-      {/* Ainda em PT direto, podemos migrar para i18n numa próxima etapa */}
-      <IntroBanner
-        text='Transição de carreira do Direito para a Tecnologia, unindo análise rigorosa, clareza de comunicação e foco na qualidade. Formação concluída em Quality Assurance (QA) com experiência em testes manuais e automatizados (Selenium, Cypress, Cucumber, BDD). Atualmente a aprofundar COBOL, Mainframe, Java e Segurança.'
-        align='center'
-      />
+      <IntroBanner text={t('intro.text')} align='center' />
 
       <DomainSkills imageSrc={skillsImg} imageAlt='Profissional a trabalhar com portátil' />
 
@@ -58,10 +54,10 @@ const HomePage: React.FC = () => {
       <ProjectTeaser
         imageSrc={teaserImg}
         imageAlt='Pessoa a trabalhar ao portátil'
-        title='Os meus projectos'
-        text='Trabalhos académicos, projetos pessoais e exercícios técnicos que demonstram competências em backend, bases de dados, automação de testes e desenvolvimento web.
-'
-        ctaLabel='Visite os meus projectos'
+        title={t('projectsTeaser.title')}
+        text={t('projectsTeaser.text')}
+        ctaLabel={t('projectsTeaser.ctaLabel')}
+        ctaHref={buildPath('projects', currentLang)}
       />
     </section>
   );

@@ -20,7 +20,7 @@ export interface ProjectTeaserProps {
 }
 
 /**
- * ProjectTeaser (Hero-style)
+ * ProjectTeaser (Hero style)
  * - Desktop: grid em 2 colunas (imagem | painel).
  * - Mobile: empilhado (imagem em cima).
  * - Tipografia do título com itálico para aproximar o mock.
@@ -31,7 +31,8 @@ const ProjectTeaser: React.FC<ProjectTeaserProps> = ({
   title = 'Os meus projectos',
   text = 'QA Profissional · Programadora em formação (COBOL, Mainframe, Backend Java)',
   ctaLabel = 'Visite os meus projectos',
-  ctaHref = '/projects',
+  // usar caminho relativo por omissão para funcionar dentro de /:lang
+  ctaHref = 'projects',
 }) => {
   return (
     <section className='projTeaser' aria-labelledby='proj-teaser-title'>
@@ -48,7 +49,7 @@ const ProjectTeaser: React.FC<ProjectTeaserProps> = ({
           </h2>
           {text && <p className='projTeaser__text'>{text}</p>}
           <div className='projTeaser__actions'>
-            <Button href={'/projects'} variant='primary' size='md'>
+            <Button href={ctaHref} variant='primary' size='md'>
               {ctaLabel}
             </Button>
           </div>

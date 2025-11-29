@@ -26,8 +26,11 @@ const IntroBanner: React.FC<IntroBannerProps> = ({ text, align = 'left', compact
     .filter(Boolean)
     .join(' ');
 
+  // Acessibilidade: só aplicar aria-label se houver texto
+  const ariaProps = text ? { 'aria-label': text } : {};
+
   return (
-    <section className={mods} aria-labelledby='intro-banner-title'>
+    <section className={mods} {...ariaProps}>
       <div className='intro__inner'>{text && <p className='intro__text'>{text}</p>}</div>
     </section>
   );
