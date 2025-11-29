@@ -202,6 +202,78 @@
       background: transparent;
     }
   }
+
+  &__lang-switch {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  &__lang-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--s-4);
+    padding: var(--s-4) var(--s-6);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-muted);
+    background: var(--color-border);
+    font-size: var(--fs-sm);
+    cursor: pointer;
+    transition: background-color 140ms ease, border-color 140ms ease;
+
+    &:hover {
+      background: color-mix(in srgb, var(--color-surface) 85%, #fff 15%);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-muted);
+      outline-offset: 2px;
+    }
+  }
+
+  &__lang-current {
+    letter-spacing: 0.04em;
+  }
+
+  &__lang-caret {
+    font-size: 0.75rem;
+    transform: translateY(1px);
+  }
+
+  &__lang-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 4px;
+    padding: 4px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    box-shadow: var(--shadow-md);
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    z-index: 120;
+  }
+
+  &__lang-option {
+    padding: 4px 8px;
+    border-radius: var(--radius-xs);
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: var(--fs-sm);
+    text-align: left;
+
+    &:hover {
+      background: color-mix(in srgb, var(--color-primary) 8%, var(--color-surface) 92%);
+    }
+
+    &--active {
+      font-weight: 600;
+      background: color-mix(in srgb, var(--color-primary) 12%, var(--color-surface) 88%);
+    }
+  }
 }
 
 // Ajuste do main alvo do skip link

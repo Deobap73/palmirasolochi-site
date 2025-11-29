@@ -12,8 +12,11 @@ import { useTranslation } from 'react-i18next';
 
 const Header: React.FC = () => {
   const [open, setOpen] = useState(false);
+  const [langMenuOpen, setLangMenuOpen] = useState(false);
+
   const navRef = useRef<HTMLDivElement | null>(null);
   const toggleRef = useRef<HTMLButtonElement | null>(null);
+  const langSwitcherRef = useRef<HTMLDivElement | null>(null);
 
   const { pathname } = useLocation();
   const navigate = useNavigate();
@@ -22,12 +25,13 @@ const Header: React.FC = () => {
 
   const currentLang: Lang = lang === 'en' ? 'en' : 'pt';
 
-  // Fecha o menu ao navegar
+  // Fecha menus ao navegar
   useEffect(() => {
     setOpen(false);
+    setLangMenuOpen(false);
   }, [pathname]);
 
-  // Fecha o menu ao clicar fora
+  // Fecha o menu principal ao clicar fora
   useEffect(() => {
     function onClickOutside(e: MouseEvent) {
       if (!open) return;
@@ -50,32 +54,58 @@ const Header: React.FC = () => {
     return () => document.removeEventListener('click', onClickOutside);
   }, [open]);
 
-  // Fecha com tecla Escape
+  // Fecha o menu de idiomas ao clicar fora
+  useEffect(() => {
+    if (!langMenuOpen) return;
+
+    function onClickOutside(e: MouseEvent) {
+      const target = e.target as Node | null;
+      if (!target) return;
+
+      if (langSwitcherRef.current && langSwitcherRef.current.contains(target)) {
+        return;
+      }
+
+      setLangMenuOpen(false);
+    }
+
+    document.addEventListener('click', onClickOutside);
+    return () => document.removeEventListener('click', onClickOutside);
+  }, [langMenuOpen]);
+
+  // Fecha menus com Escape
   useEffect(() => {
     function onKeyDown(e: KeyboardEvent) {
-      if (!open) return;
       if (e.key === 'Escape') {
-        setOpen(false);
+        if (open) setOpen(false);
+        if (langMenuOpen) setLangMenuOpen(false);
       }
     }
 
     document.addEventListener('keydown', onKeyDown);
     return () => document.removeEventListener('keydown', onKeyDown);
-  }, [open]);
+  }, [open, langMenuOpen]);
 
-  const handleLanguageSwitch = () => {
-    const nextLang: Lang = currentLang === 'pt' ? 'en' : 'pt';
+  function navigateToLang(nextLang: Lang) {
+    if (nextLang === currentLang) return;
 
-    // troca apenas o prefixo /pt ou /en mantendo o resto
     const match = pathname.match(/^\/(pt|en)(\/.*)?$/);
     if (match) {
       const rest = match[2] || '';
       const targetPath = `/${nextLang}${rest}`;
       navigate(targetPath);
     } else {
-      // fallback caso alguém vá a uma rota sem prefixo
       navigate(nextLang === 'pt' ? '/pt' : '/en');
     }
+  }
+
+  const handleLanguageSelect = (nextLang: Lang) => {
+    setLangMenuOpen(false);
+    navigateToLang(nextLang);
+  };
+
+  const handleLanguageButtonClick = () => {
+    setLangMenuOpen((prev) => !prev);
   };
 
   return (
@@ -122,19 +152,38 @@ const Header: React.FC = () => {
             {t('menu.contact')}
           </NavLink>
 
-          <button
-            type='button'
-            className='header__lang-switch'
-            onClick={handleLanguageSwitch}
-            aria-label={currentLang === 'pt' ? 'Switch to English' : 'Mudar para Português'}>
-            <span className={`header__lang ${currentLang === 'pt' ? 'header__lang--active' : ''}`}>
-              PT
-            </span>
-            <span className='header__lang-separator'>|</span>
-            <span className={`header__lang ${currentLang === 'en' ? 'header__lang--active' : ''}`}>
-              EN
-            </span>
-          </button>
+          {/* Switch de idioma com dropdown */}
+          <div className='header__lang-switch' ref={langSwitcherRef}>
+            <button
+              type='button'
+              className='header__lang-btn'
+              onClick={handleLanguageButtonClick}
+              aria-haspopup='menu'
+              aria-expanded={langMenuOpen}
+              aria-label={currentLang === 'pt' ? 'Switch to English' : 'Mudar para Português'}>
+              <span className='header__lang-current'>{currentLang.toUpperCase()}</span>
+              <span className='header__lang-caret' aria-hidden='true'>
+                ▾
+              </span>
+            </button>
+
+            {langMenuOpen && (
+              <div className='header__lang-menu' role='menu'>
+                {(['pt', 'en'] as Lang[]).map((code) => (
+                  <button
+                    key={code}
+                    type='button'
+                    role='menuitem'
+                    className={`header__lang-option ${
+                      code === currentLang ? 'header__lang-option--active' : ''
+                    }`}
+                    onClick={() => handleLanguageSelect(code)}>
+                    {code.toUpperCase()}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </header>
