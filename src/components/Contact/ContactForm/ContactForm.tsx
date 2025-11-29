@@ -7,6 +7,7 @@ import Button from '../../common/Button/Button';
 import type { ContactFormValues } from '../../../types/contact';
 import { sendContact } from '../../../services/contact';
 import { useTranslation } from 'react-i18next';
+import { gtmEvent } from '../../../utils/gtm';
 
 interface Props {
   className?: string;
@@ -47,12 +48,20 @@ const ContactForm: React.FC<Props> = ({ className = '' }) => {
     try {
       setError('');
       setSending(true);
+
       await sendContact({
         name: values.name,
         email: values.email,
         subject: values.subject,
         message: values.message,
       });
+
+      // evento GTM depois do envio com sucesso
+      gtmEvent('contact_form_submit', {
+        method: 'internal_form',
+        has_subject: Boolean(values.subject),
+      });
+
       setSent(true);
       setValues(initialValues);
       window.setTimeout(() => setSent(false), 4000);
@@ -66,7 +75,7 @@ const ContactForm: React.FC<Props> = ({ className = '' }) => {
 
   return (
     <form className={rootCls} onSubmit={handleSubmit} noValidate aria-live='polite'>
-      {/* Honeypot anti-spam */}
+      {/* Honeypot anti spam */}
       <div className='contactForm__honeypot' aria-hidden='true'>
         <label htmlFor='company'>{t('form.honeypotLabel')}</label>
         <input

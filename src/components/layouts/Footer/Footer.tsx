@@ -5,11 +5,11 @@ import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import './Footer.scss';
 
-// Import images
 import LogoWebP from '../../../assets/Logo.webp';
 import LogoLegal from '../../../assets/logo_theHumanTechDigitals.svg';
 import { buildPath, Lang } from '../../../utils/routePaths';
 import { useTranslation } from 'react-i18next';
+import { gtmEvent } from '../../../utils/gtm';
 // -----------------------------------------------------------------
 
 const Footer: React.FC = () => {
@@ -18,6 +18,18 @@ const Footer: React.FC = () => {
   const currentLang: Lang = lang === 'en' ? 'en' : 'pt';
 
   const { t } = useTranslation('common');
+
+  const handleLinkedinClick = () => {
+    gtmEvent('linkedin_click', {
+      location: 'footer',
+    });
+  };
+
+  const handleGithubClick = () => {
+    gtmEvent('github_click', {
+      location: 'footer',
+    });
+  };
 
   return (
     <footer className='footer' role='contentinfo'>
@@ -60,7 +72,8 @@ const Footer: React.FC = () => {
                   href='https://www.linkedin.com/in/palmira-solochi-79a1a3317/'
                   aria-label='LinkedIn'
                   target='_blank'
-                  rel='noopener noreferrer'>
+                  rel='noopener noreferrer'
+                  onClick={handleLinkedinClick}>
                   LinkedIn
                 </a>
               </li>
@@ -70,7 +83,8 @@ const Footer: React.FC = () => {
                   href='https://github.com/Pssolochi82'
                   aria-label='GitHub'
                   target='_blank'
-                  rel='noopener noreferrer'>
+                  rel='noopener noreferrer'
+                  onClick={handleGithubClick}>
                   GitHub
                 </a>
               </li>
@@ -91,7 +105,13 @@ const Footer: React.FC = () => {
             className='footer__link--legal'
             href='https://thehumantechblog.com/about'
             target='_blank'
-            rel='noopener noreferrer'>
+            rel='noopener noreferrer'
+            onClick={() =>
+              gtmEvent('external_brand_click', {
+                brand: 'thehumantechblog',
+                location: 'footer',
+              })
+            }>
             <img
               src={LogoLegal}
               alt='Logótipo The Human Tech Blog'

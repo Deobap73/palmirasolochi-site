@@ -10,6 +10,7 @@ import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Lang, buildPath } from '../utils/routePaths';
 import Seo from '../components/common/Seo/Seo';
+import { gtmEvent } from '../utils/gtm';
 
 function withBase(path: string): string {
   const base = import.meta.env.BASE_URL || '/';
@@ -48,6 +49,10 @@ const ProjectDetailPage: React.FC = () => {
         const found = await getProjectBySlug(slug);
         if (!alive) return;
         if (found) {
+          gtmEvent('project_visit', {
+            slug,
+            title: found.title,
+          });
           setProject(found);
           setNotFound(false);
         } else {
