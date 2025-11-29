@@ -7,51 +7,67 @@ import '../../common/Container/Container.scss';
 import './ContactFormSection.scss';
 import Container from '../../common/Container/Container';
 import ContactForm from '../ContactForm/ContactForm';
+import { useTranslation } from 'react-i18next';
 
 const ContactFormSection: React.FC = () => {
+  const { t } = useTranslation('contact');
+
   return (
     <section id='contact-section' className='contactSection' aria-labelledby='contact-title'>
       <Container>
         <div className='contactSection__grid'>
-          <aside className='contactSection__info' aria-label='Nota informativa'>
-            <h3 className='contactSection__info__subtitle'>Entre em Contato</h3>
-            <h2 className='contactSection__info__title'>Fale Comigo</h2>
+          <aside className='contactSection__info' aria-label={t('formSection.infoAria')}>
+            <h3 className='contactSection__info__subtitle'>{t('formSection.subtitle')}</h3>
+            <h2 id='contact-title' className='contactSection__info__title'>
+              {t('formSection.title')}
+            </h2>
             <p className='contactSection__info__descs'>
-              Estou aqui para ajudar a transformar as suas ideias em realidade. Preencha o
-              formulário e darei uma resposta personalizada no prazo de 24 horas. <br />
-              <strong> Vamos criar algo extraordinário juntos!</strong>
+              {t('formSection.desc')} <br />
+              <strong>{t('formSection.highlight')}</strong>
             </p>
             <div className='contactSection__info__grids'>
               <div className='contactSection__info__grids__item'>
-                <FiMail className='contactSection__info__grids__item__icon' />
+                <FiPhone className='contactSection__info__grids__item__icon' />
                 <div>
-                  <div className='contactSection__info__grids__item__label'>Número de Telefone</div>
-                  <div className='contactSection__info__grids__item__value'>(+351) 934 462 328</div>
+                  <div className='contactSection__info__grids__item__label'>
+                    {t('formSection.phoneLabel')}
+                  </div>
+                  <div className='contactSection__info__grids__item__value'>
+                    {t('formSection.phoneValue')}
+                  </div>
                 </div>
               </div>
               <div className='contactSection__info__grids__item'>
                 <FiMail className='contactSection__info__grids__item__icon' />
                 <div>
-                  <div className='contactSection__info__grids__item__label'>Endereço de E-mail</div>
+                  <div className='contactSection__info__grids__item__label'>
+                    {t('formSection.emailLabel')}
+                  </div>
                   <div className='contactSection__info__grids__item__value'>
-                    contact@palmirasolochi.com
+                    {t('formSection.emailValue')}
                   </div>
                 </div>
               </div>
               <div className='contactSection__info__grids__item'>
                 <FiGlobe className='contactSection__info__grids__item__icon' />
                 <div>
-                  <div className='contactSection__info__grids__item__label'>Sites</div>
+                  <div className='contactSection__info__grids__item__label'>
+                    {t('formSection.sitesLabel')}
+                  </div>
                   <div className='contactSection__info__grids__item__value'>
-                    www.palmirasolochi.com
+                    {t('formSection.siteValue')}
                   </div>
                 </div>
               </div>
               <div className='contactSection__info__grids__item'>
                 <FiMapPin className='contactSection__info__grids__item__icon' />
                 <div>
-                  <div className='contactSection__info__grids__item__label'>Endereço</div>
-                  <div className='contactSection__info__grids__item__value'>Porto, Portugal</div>
+                  <div className='contactSection__info__grids__item__label'>
+                    {t('formSection.addressLabel')}
+                  </div>
+                  <div className='contactSection__info__grids__item__value'>
+                    {t('formSection.addressValue')}
+                  </div>
                 </div>
               </div>
             </div>

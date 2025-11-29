@@ -9,12 +9,17 @@ import Container from '../../common/Container/Container';
 interface Props {
   children: React.ReactNode;
   className?: string;
+  ariaLabel?: string;
 }
 
-const QuoteContact: React.FC<Props> = ({ children, className = '' }) => {
+const QuoteContact: React.FC<Props> = ({
+  children,
+  className = '',
+  ariaLabel = 'Frase inspiradora',
+}) => {
   const rootCls = ['quoteContact', className].filter(Boolean).join(' ');
   return (
-    <section className={rootCls} aria-label='Frase inspiradora'>
+    <section className={rootCls} aria-label={ariaLabel}>
       <Container>
         <blockquote className='quoteContact__text'>
           <p>{children}</p>

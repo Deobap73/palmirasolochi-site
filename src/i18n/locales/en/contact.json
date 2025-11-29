@@ -1,0 +1,46 @@
+{
+  "hero": {
+    "title": "Let’s talk",
+    "imageAlt": "Palmira Solochi",
+    "ctaLabel": "Get in touch",
+    "paragraphs": [
+      "Let us explore the world of technology together.",
+      "Reach out to share your ideas and questions about tech."
+    ]
+  },
+  "quote": {
+    "ariaLabel": "Inspiring quote",
+    "text": "Recognising your flaws is an important step in your professional and spiritual growth. They can be used in your favour."
+  },
+  "formSection": {
+    "infoAria": "Information note",
+    "subtitle": "Get in touch",
+    "title": "Contact me",
+    "desc": "I am here to help turn your ideas into reality. Fill in the form and I will reply with a personalised answer within 24 hours.",
+    "highlight": "Let us create something meaningful together.",
+    "phoneLabel": "Phone number",
+    "phoneValue": "(+351) 934 462 328",
+    "emailLabel": "Email address",
+    "emailValue": "contact@palmirasolochi.com",
+    "sitesLabel": "Websites",
+    "siteValue": "www.palmirasolochi.com",
+    "addressLabel": "Address",
+    "addressValue": "Porto, Portugal"
+  },
+  "form": {
+    "honeypotLabel": "Company",
+    "nameLabel": "Name",
+    "namePlaceholder": "Your name",
+    "emailLabel": "Email",
+    "emailPlaceholder": "name@example.com",
+    "subjectLabel": "Subject",
+    "subjectPlaceholder": "Subject",
+    "messageLabel": "Message",
+    "messagePlaceholder": "Write your message...",
+    "submit": "Send",
+    "submitting": "Sending…",
+    "errorMissingFields": "Please fill in Name, Email and Message.",
+    "errorSend": "Something went wrong while sending. Please try again.",
+    "success": "Thank you. Your message has been sent."
+  }
+}

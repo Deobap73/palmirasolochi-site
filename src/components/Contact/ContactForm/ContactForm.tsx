@@ -1,13 +1,12 @@
 // src/components/Contact/ContactForm/ContactForm.tsx
 'use strict';
 
-// src/components/Contact/ContactForm/ContactForm.tsx
-
 import React, { useState } from 'react';
 import './ContactForm.scss';
 import Button from '../../common/Button/Button';
 import type { ContactFormValues } from '../../../types/contact';
 import { sendContact } from '../../../services/contact';
+import { useTranslation } from 'react-i18next';
 
 interface Props {
   className?: string;
@@ -22,6 +21,8 @@ const initialValues: ContactFormValues = {
 };
 
 const ContactForm: React.FC<Props> = ({ className = '' }) => {
+  const { t } = useTranslation('contact');
+
   const [values, setValues] = useState<ContactFormValues>(initialValues);
   const [sending, setSending] = useState<boolean>(false);
   const [sent, setSent] = useState<boolean>(false);
@@ -39,7 +40,7 @@ const ContactForm: React.FC<Props> = ({ className = '' }) => {
     if (sending) return;
 
     if (!values.name || !values.email || !values.message) {
-      setError('Por favor preencha Nome, Email e Mensagem.');
+      setError(t('form.errorMissingFields'));
       return;
     }
 
@@ -57,7 +58,7 @@ const ContactForm: React.FC<Props> = ({ className = '' }) => {
       window.setTimeout(() => setSent(false), 4000);
     } catch (err) {
       console.error(err);
-      setError('Ocorreu um erro ao enviar. Tenta novamente.');
+      setError(t('form.errorSend'));
     } finally {
       setSending(false);
     }
@@ -67,7 +68,7 @@ const ContactForm: React.FC<Props> = ({ className = '' }) => {
     <form className={rootCls} onSubmit={handleSubmit} noValidate aria-live='polite'>
       {/* Honeypot anti-spam */}
       <div className='contactForm__honeypot' aria-hidden='true'>
-        <label htmlFor='company'>Empresa</label>
+        <label htmlFor='company'>{t('form.honeypotLabel')}</label>
         <input
           id='company'
           name='company'
@@ -81,7 +82,7 @@ const ContactForm: React.FC<Props> = ({ className = '' }) => {
 
       <div className='contactForm__row'>
         <label className='contactForm__label' htmlFor='name'>
-          Nome
+          {t('form.nameLabel')}
         </label>
         <input
           className='contactForm__input'
@@ -89,7 +90,7 @@ const ContactForm: React.FC<Props> = ({ className = '' }) => {
           name='name'
           type='text'
           autoComplete='name'
-          placeholder='O seu nome'
+          placeholder={t('form.namePlaceholder')}
           value={values.name}
           onChange={handleChange}
           required
@@ -98,7 +99,7 @@ const ContactForm: React.FC<Props> = ({ className = '' }) => {
 
       <div className='contactForm__row'>
         <label className='contactForm__label' htmlFor='email'>
-          Email
+          {t('form.emailLabel')}
         </label>
         <input
           className='contactForm__input'
@@ -106,7 +107,7 @@ const ContactForm: React.FC<Props> = ({ className = '' }) => {
           name='email'
           type='email'
           autoComplete='email'
-          placeholder='nome@exemplo.com'
+          placeholder={t('form.emailPlaceholder')}
           value={values.email}
           onChange={handleChange}
           required
@@ -115,14 +116,14 @@ const ContactForm: React.FC<Props> = ({ className = '' }) => {
 
       <div className='contactForm__row'>
         <label className='contactForm__label' htmlFor='subject'>
-          Assunto
+          {t('form.subjectLabel')}
         </label>
         <input
           className='contactForm__input'
           id='subject'
           name='subject'
           type='text'
-          placeholder='Assunto'
+          placeholder={t('form.subjectPlaceholder')}
           value={values.subject}
           onChange={handleChange}
         />
@@ -130,13 +131,13 @@ const ContactForm: React.FC<Props> = ({ className = '' }) => {
 
       <div className='contactForm__row'>
         <label className='contactForm__label' htmlFor='message'>
-          Mensagem
+          {t('form.messageLabel')}
         </label>
         <textarea
           className='contactForm__textarea'
           id='message'
           name='message'
-          placeholder='Escreva a sua mensagem...'
+          placeholder={t('form.messagePlaceholder')}
           rows={6}
           value={values.message}
           onChange={handleChange}
@@ -148,13 +149,13 @@ const ContactForm: React.FC<Props> = ({ className = '' }) => {
         <Button
           type='submit'
           disabled={sending}
-          aria-label={sending ? 'A enviar…' : 'Enviar mensagem'}>
-          {sending ? 'A enviar…' : 'Enviar'}
+          aria-label={sending ? t('form.submitting') : t('form.submit')}>
+          {sending ? t('form.submitting') : t('form.submit')}
         </Button>
 
         {sent && (
           <span className='contactForm__feedback' role='status'>
-            Obrigado! A sua mensagem foi enviada.
+            {t('form.success')}
           </span>
         )}
 

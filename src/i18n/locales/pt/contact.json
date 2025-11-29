@@ -1,0 +1,46 @@
+{
+  "hero": {
+    "title": "Vamos conversar",
+    "imageAlt": "Palmira Solochi",
+    "ctaLabel": "Vamos falar",
+    "paragraphs": [
+      "Vamos descobrir juntos todo um mundo tecnológico.",
+      "Entre em contacto comigo para partilharmos ideias sobre tecnologia."
+    ]
+  },
+  "quote": {
+    "ariaLabel": "Frase inspiradora",
+    "text": "Reconhecer suas falhas é um passo importante para o seu crescimento tanto profissional como espiritual. Elas podem ser usadas em seu benefício."
+  },
+  "formSection": {
+    "infoAria": "Nota informativa",
+    "subtitle": "Entre em Contato",
+    "title": "Fale Comigo",
+    "desc": "Estou aqui para ajudar a transformar as suas ideias em realidade. Preencha o formulário e darei uma resposta personalizada no prazo de 24 horas.",
+    "highlight": "Vamos criar algo extraordinário juntos!",
+    "phoneLabel": "Número de Telefone",
+    "phoneValue": "(+351) 934 462 328",
+    "emailLabel": "Endereço de E-mail",
+    "emailValue": "contact@palmirasolochi.com",
+    "sitesLabel": "Sites",
+    "siteValue": "www.palmirasolochi.com",
+    "addressLabel": "Endereço",
+    "addressValue": "Porto, Portugal"
+  },
+  "form": {
+    "honeypotLabel": "Empresa",
+    "nameLabel": "Nome",
+    "namePlaceholder": "O seu nome",
+    "emailLabel": "Email",
+    "emailPlaceholder": "nome@exemplo.com",
+    "subjectLabel": "Assunto",
+    "subjectPlaceholder": "Assunto",
+    "messageLabel": "Mensagem",
+    "messagePlaceholder": "Escreva a sua mensagem...",
+    "submit": "Enviar",
+    "submitting": "A enviar…",
+    "errorMissingFields": "Por favor preencha Nome, Email e Mensagem.",
+    "errorSend": "Ocorreu um erro ao enviar. Tenta novamente.",
+    "success": "Obrigado! A sua mensagem foi enviada."
+  }
+}
