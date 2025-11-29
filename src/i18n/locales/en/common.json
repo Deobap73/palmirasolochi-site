@@ -1,5 +1,4 @@
 {
-  "language": "English",
   "menu": {
     "home": "Home",
     "about": "About",
@@ -7,5 +6,14 @@
     "contact": "Contact",
     "curriculum": "Resume",
     "certificates": "Certificates"
+  },
+  "footer": {
+    "menuAria": "Footer menu",
+    "site": "Site",
+    "about": "About",
+    "projects": "Projects",
+    "contact": "Contact",
+    "social": "Social",
+    "rights": "All rights reserved. Developed by"
   }
 }

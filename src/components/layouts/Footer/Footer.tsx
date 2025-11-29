@@ -9,12 +9,15 @@ import './Footer.scss';
 import LogoWebP from '../../../assets/Logo.webp';
 import LogoLegal from '../../../assets/logo_theHumanTechDigitals.svg';
 import { buildPath, Lang } from '../../../utils/routePaths';
+import { useTranslation } from 'react-i18next';
 // -----------------------------------------------------------------
 
 const Footer: React.FC = () => {
   const year = new Date().getFullYear();
   const { lang } = useParams<{ lang: Lang }>();
   const currentLang: Lang = lang === 'en' ? 'en' : 'pt';
+
+  const { t } = useTranslation('common');
 
   return (
     <footer className='footer' role='contentinfo'>
@@ -26,30 +29,30 @@ const Footer: React.FC = () => {
           <img src={LogoWebP} alt='Logótipo Palmira Solochi' />
         </Link>
 
-        <nav className='footer__cols' aria-label='Footer menus'>
+        <nav className='footer__cols' aria-label={t('footer.menuAria')}>
           <div className='footer__col'>
-            <h3 className='footer__heading'>Site</h3>
+            <h3 className='footer__heading'>{t('footer.site')}</h3>
             <ul className='footer__list'>
               <li>
                 <Link className='footer__link' to={buildPath('about', currentLang)}>
-                  Sobre
+                  {t('footer.about')}
                 </Link>
               </li>
               <li>
                 <Link className='footer__link' to={buildPath('projects', currentLang)}>
-                  Projetos
+                  {t('footer.projects')}
                 </Link>
               </li>
               <li>
                 <Link className='footer__link' to={buildPath('contact', currentLang)}>
-                  Contacto
+                  {t('footer.contact')}
                 </Link>
               </li>
             </ul>
           </div>
 
           <div className='footer__col'>
-            <h3 className='footer__heading'>Redes</h3>
+            <h3 className='footer__heading'>{t('footer.social')}</h3>
             <ul className='footer__list'>
               <li>
                 <a
@@ -83,8 +86,7 @@ const Footer: React.FC = () => {
 
       <div className='footer__bottom'>
         <small className='footer__legal'>
-          © {year} Todos os direitos reservados. Desenvolvido por &nbsp;&nbsp;&nbsp; -
-          &nbsp;&nbsp;&nbsp;
+          © {year} {t('footer.rights')}&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;
           <a
             className='footer__link--legal'
             href='https://thehumantechblog.com/about'
