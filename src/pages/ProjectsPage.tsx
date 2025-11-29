@@ -16,24 +16,16 @@ import { listProjects } from '../services/projects';
 
 // Hero intacto
 import hero3 from '../assets/hero-3.webp';
+import { useTranslation } from 'react-i18next';
+import { useParams } from 'react-router-dom';
+import { Lang, buildPath } from '../utils/routePaths';
 
 const ProjectsPage: React.FC = () => {
-  const introText = `
-<p>Uma seleção de projetos de Desenvolvimento de Software que reflete a minha evolução como Programadora e Especialista em QA (Garantia de Qualidade), demonstrando o meu compromisso com a qualidade, aprendizagem contínua e inovação ao longo do meu percurso académico e profissional.</p>
+  const { t } = useTranslation('projects');
+  const { lang } = useParams<{ lang: Lang }>();
+  const currentLang: Lang = lang === 'en' ? 'en' : 'pt';
 
-<p>Cada projeto representa uma etapa crucial da minha jornada, desde as primeiras experiências em Testes de Software até ao Desenvolvimento de Aplicações robustas nas seguintes tecnologias e linguagens: <strong>COBOL, Mainframe, Java, C, C++, PHP, C#, ASP Net Core e Python</strong>.</p>
-
-<p>Aqui encontrará um Portefólio de Projetos que inclui trabalhos académicos, projetos pessoais e exercícios técnicos que solidificam as minhas competências em:</p>
-
-<ul>
-  <li>Programação Backend</li>
-  <li>Bases de Dados</li>
-  <li>Automação de Testes</li>
-  <li>Desenvolvimento Web</li>
-</ul>
-
-<p>"Cada linha de código é uma oportunidade para aprender, melhorar e criar algo que faça a diferença."</p>
-`;
+  const introText = t('intro.html');
 
   // estado
   const [q, setQ] = React.useState('');
@@ -46,14 +38,14 @@ const ProjectsPage: React.FC = () => {
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState('');
 
-  // tags fixas por agora
+  // tags fixas por agora (names neutros)
   const tags = ['Python', 'PHP', 'C++', 'C#', 'QA', 'COBOL', 'Java'];
 
   const toggleTag = (tag: string) => {
     setActiveTags((prev) => (prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]));
   };
 
-  // carregar projetos de forma assíncrona
+  // carregar projetos
   React.useEffect(() => {
     let alive = true;
     async function load(): Promise<void> {
@@ -75,7 +67,7 @@ const ProjectsPage: React.FC = () => {
         setProjects(items);
       } catch (e) {
         if (!alive) return;
-        setError('Falha ao carregar projetos.');
+        setError(t('list.error'));
       } finally {
         if (alive) setLoading(false);
       }
@@ -84,6 +76,7 @@ const ProjectsPage: React.FC = () => {
     return () => {
       alive = false;
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // filtros
@@ -105,7 +98,6 @@ const ProjectsPage: React.FC = () => {
     const arr = [...filtered];
     if (sort === 'az') return arr.sort((a, b) => a.title.localeCompare(b.title));
     if (sort === 'za') return arr.sort((a, b) => b.title.localeCompare(a.title));
-    // newest e oldest usando id numérico como fallback
     return arr.sort((a, b) =>
       sort === 'newest' ? Number(b.id) - Number(a.id) : Number(a.id) - Number(b.id)
     );
@@ -116,21 +108,28 @@ const ProjectsPage: React.FC = () => {
   const startIndex = (page - 1) * itemsPerPage;
   const pageItems = sorted.slice(startIndex, startIndex + itemsPerPage);
 
-  // reset página quando filtros mudam
   React.useEffect(() => {
     setPage(1);
   }, [q, sort, activeTags]);
 
   return (
-    <main aria-labelledby='ProjectsPage-title' className='pagesGeneral'>
+    <main aria-labelledby='projects-hero-title' className='pagesGeneral'>
       <HeroProjects
-        title='Portfólio de Projetos'
-        subtitle='UI, Frontend e Prototipagem'
-        text='Seleção de trabalhos com foco em acessibilidade, performance e detalhe visual.'
+        title={t('hero.title')}
+        subtitle={t('hero.subtitle')}
+        text={t('hero.text')}
         imageSrc={hero3}
-        imageAlt='Preview de projetos'
-        ctaPrimary={{ label: 'Ver todos', href: 'https://github.com/Pssolochi82?tab=repositories' }}
-        ctaSecondary={{ label: 'GitHub', href: 'https://github.com/Pssolochi82', target: '_blank' }}
+        imageAlt={t('hero.imageAlt')}
+        ctaPrimary={{
+          label: t('hero.ctaPrimaryLabel'),
+          href: 'https://github.com/Pssolochi82?tab=repositories',
+          target: '_blank',
+        }}
+        ctaSecondary={{
+          label: t('hero.ctaSecondaryLabel'),
+          href: 'https://github.com/Pssolochi82',
+          target: '_blank',
+        }}
       />
 
       <IntroBannerProjects text={introText} align='center' />
@@ -145,27 +144,34 @@ const ProjectsPage: React.FC = () => {
         onToggleTag={toggleTag}
       />
 
-      {loading && <p role='status'>A carregar…</p>}
+      {loading && <p role='status'>{t('list.loading')}</p>}
       {!loading && error && <p role='alert'>{error}</p>}
-      {!loading && !error && (
-        <ProjectsGrid items={pageItems} emptyText='Nenhum projeto encontrado.' />
-      )}
+      {!loading && !error && <ProjectsGrid items={pageItems} emptyText={t('grid.emptyText')} />}
 
       {!loading && !error && (
-        <Pagination currentPage={page} totalPages={totalPages} onPageChange={setPage} />
+        <Pagination
+          currentPage={page}
+          totalPages={totalPages}
+          onPageChange={setPage}
+          ariaLabel={t('pagination.ariaLabel')}
+        />
       )}
 
       <CtaBand
-        title='Tem um projeto em mente?'
-        text='Fale comigo para desenharmos juntos a melhor solução, com qualidade, acessibilidade e foco no detalhe.'
-        primary={{ label: 'Contactar', href: '/contact' }}
+        title={t('ctaBand.title')}
+        text={t('ctaBand.text')}
+        primary={{
+          label: t('ctaBand.primaryLabel'),
+          href: buildPath('contact', currentLang),
+        }}
         secondary={{
-          label: 'LinkedIn',
+          label: t('ctaBand.secondaryLabel'),
           href: 'https://www.linkedin.com/in/palmirasolochi/',
           target: '_blank',
         }}
         align='center'
         tone='accent'
+        ariaLabel={t('ctaBand.ariaLabel')}
       />
     </main>
   );

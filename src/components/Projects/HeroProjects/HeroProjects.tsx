@@ -34,8 +34,8 @@ const HeroProjects: React.FC<HeroProjectsProps> = ({
   text = '',
   imageSrc,
   imageAlt,
-  ctaPrimary = { label: 'Todos os Projetos', href: '/projects', target: '_blank' },
-  ctaSecondary = { label: 'GitHub', href: 'https://github.com/', target: '_blank' },
+  ctaPrimary,
+  ctaSecondary,
   inverted = false,
 }) => {
   const cls = ['projects-hero', inverted ? 'projects-hero--inverted' : '']
@@ -44,13 +44,12 @@ const HeroProjects: React.FC<HeroProjectsProps> = ({
 
   return (
     <section className={cls} aria-labelledby='projects-hero-title'>
-      {/* Stage (imagem 16/9; no desktop fica à esquerda em absolute) */}
       <div className='projects-hero__stage' aria-hidden='true'>
         <div className='projects-hero__media'>
           <img className='projects-hero__img' src={imageSrc} alt={imageAlt} />
         </div>
       </div>
-      {/* Card (desktop à direita; mobile abaixo da imagem) */}
+
       <div className='projects-hero__card' role='group' aria-label='Destaque de projetos'>
         <h1 id='projects-hero-title' className='projects-hero__title'>
           {title}
@@ -61,11 +60,7 @@ const HeroProjects: React.FC<HeroProjectsProps> = ({
         {(ctaPrimary || ctaSecondary) && (
           <div className='projects-hero__actions'>
             {ctaPrimary && (
-              <Button
-                href={ctaPrimary.href}
-                variant='primary'
-                size='lg'
-                target={ctaSecondary.target}>
+              <Button href={ctaPrimary.href} variant='primary' size='lg' target={ctaPrimary.target}>
                 {ctaPrimary.label}
               </Button>
             )}

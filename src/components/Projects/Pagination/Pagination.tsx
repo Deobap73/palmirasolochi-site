@@ -3,17 +3,13 @@
 
 import React from 'react';
 import './Pagination.scss';
+import { useTranslation } from 'react-i18next';
 
 export interface PaginationProps {
-  /** Página atual (1-based) */
   currentPage: number;
-  /** Total de páginas (>= 1) */
   totalPages: number;
-  /** Callback ao mudar de página */
   onPageChange: (page: number) => void;
-  /** Quantos números mostrar em torno da página atual (ex.: 1 => ... 4 [5] 6 ...) */
   siblingCount?: number;
-  /** Texto acessível opcional */
   ariaLabel?: string;
 }
 
@@ -24,13 +20,14 @@ const Pagination: React.FC<PaginationProps> = ({
   totalPages,
   onPageChange,
   siblingCount = 1,
-  ariaLabel = 'Paginação de projetos',
+  ariaLabel,
 }) => {
+  const { t } = useTranslation('projects');
+
   if (totalPages <= 1) return null;
 
   const goTo = (p: number) => onPageChange(clamp(p, 1, totalPages));
 
-  // Construir range com elipses
   const start = Math.max(2, currentPage - siblingCount);
   const end = Math.min(totalPages - 1, currentPage + siblingCount);
 
@@ -40,8 +37,10 @@ const Pagination: React.FC<PaginationProps> = ({
   if (end < totalPages - 1) range.push('…');
   if (totalPages > 1) range.push(totalPages);
 
+  const label = ariaLabel || t('pagination.ariaLabel');
+
   return (
-    <nav className='pag' role='navigation' aria-label={ariaLabel}>
+    <nav className='pag' role='navigation' aria-label={label}>
       <ul className='pag__list'>
         <li className='pag__item'>
           <button
@@ -49,7 +48,7 @@ const Pagination: React.FC<PaginationProps> = ({
             className='pag__btn'
             onClick={() => goTo(currentPage - 1)}
             disabled={currentPage === 1}
-            aria-label='Página anterior'>
+            aria-label={t('pagination.prev')}>
             ‹
           </button>
         </li>
@@ -78,7 +77,7 @@ const Pagination: React.FC<PaginationProps> = ({
             className='pag__btn'
             onClick={() => goTo(currentPage + 1)}
             disabled={currentPage === totalPages}
-            aria-label='Próxima página'>
+            aria-label={t('pagination.next')}>
             ›
           </button>
         </li>

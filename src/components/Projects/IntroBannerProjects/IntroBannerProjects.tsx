@@ -1,3 +1,4 @@
+// src/components/Projects/IntroBannerProjects/IntroBannerProjects.tsx
 'use strict';
 
 import React from 'react';

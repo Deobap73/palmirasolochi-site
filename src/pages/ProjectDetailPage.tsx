@@ -7,24 +7,28 @@ import Button from '../components/common/Button/Button';
 import type { Project } from '../types/project';
 import { getProjectBySlug } from '../services/projects';
 import { useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { Lang, buildPath } from '../utils/routePaths';
 
-/** Respeita o BASE_URL do Vite quando o site está num subpath */
 function withBase(path: string): string {
   const base = import.meta.env.BASE_URL || '/';
   return `${base.replace(/\/+$/, '')}/${path.replace(/^\/+/, '')}`;
 }
 
-/** Fallback 16:9 servido pela pasta public, sem import */
 const FALLBACK_HERO = withBase('projectsImages/mock1.webp');
 
-const formatDate = (iso?: string) => {
+const formatDate = (iso: string | undefined, lang: Lang): string => {
   if (!iso) return '';
   const d = new Date(iso);
-  return d.toLocaleDateString('pt-PT', { year: 'numeric', month: 'short', day: '2-digit' });
+  const locale = lang === 'en' ? 'en-GB' : 'pt-PT';
+  return d.toLocaleDateString(locale, { year: 'numeric', month: 'short', day: '2-digit' });
 };
 
 const ProjectDetailPage: React.FC = () => {
-  const { slug } = useParams<{ slug: string }>();
+  const { slug, lang } = useParams<{ slug: string; lang: Lang }>();
+  const currentLang: Lang = lang === 'en' ? 'en' : 'pt';
+  const { t } = useTranslation('projectDetail');
+
   const [project, setProject] = React.useState<Project | null>(null);
   const [notFound, setNotFound] = React.useState(false);
   const [loading, setLoading] = React.useState(true);
@@ -62,7 +66,7 @@ const ProjectDetailPage: React.FC = () => {
   if (loading) {
     return (
       <main className='projDetail' role='status' aria-live='polite'>
-        <p>Carregando…</p>
+        <p>{t('loading')}</p>
       </main>
     );
   }
@@ -71,9 +75,17 @@ const ProjectDetailPage: React.FC = () => {
     return (
       <main className='projDetail' role='status' aria-live='polite'>
         <header className='projDetail__head'>
-          <h1 className='projDetail__title'>Projeto não encontrado</h1>
-          <p className='projDetail__excerpt'>Verifica o endereço ou volta à página de projetos.</p>
+          <h1 className='projDetail__title'>{t('notFoundTitle')}</h1>
+          <p className='projDetail__excerpt'>{t('notFoundExcerpt')}</p>
         </header>
+        <Button
+          className='projDetail__action'
+          href={buildPath('projects', currentLang)}
+          variant='secondary'
+          size='md'
+          aria-label={t('backAria')}>
+          {t('backLabel')}
+        </Button>
       </main>
     );
   }
@@ -90,13 +102,11 @@ const ProjectDetailPage: React.FC = () => {
     excerpt,
   } = project;
 
-  // Novo: descrição rica proveniente do JSON
   const descriptionHtml = (project as unknown as { descriptionHtml?: string })?.descriptionHtml;
 
   return (
     <main className='projDetail' aria-labelledby='projDetail-title'>
-      {/* HERO 16:9 */}
-      <header className='projDetail__hero' aria-label='Imagem do projeto'>
+      <header className='projDetail__hero' aria-label={t('heroAria')}>
         <figure className='projDetail__media'>
           <img
             className='projDetail__img'
@@ -114,10 +124,10 @@ const ProjectDetailPage: React.FC = () => {
           {excerpt && <p className='projDetail__excerpt'>{excerpt}</p>}
 
           {(links?.live || links?.repo) && (
-            <div className='projDetail__actions' role='group' aria-label='Ações do projeto'>
+            <div className='projDetail__actions' role='group' aria-label={t('actionsAria')}>
               {links?.live && (
-                <Button href={links.live} variant='primary' size='md' aria-label='Abrir demo'>
-                  Live
+                <Button href={links.live} variant='primary' size='md' aria-label={t('liveAria')}>
+                  {t('liveLabel')}
                 </Button>
               )}
               {links?.repo && (
@@ -125,10 +135,10 @@ const ProjectDetailPage: React.FC = () => {
                   href={links.repo}
                   variant='secondary'
                   size='md'
-                  aria-label='Abrir GitHub'
+                  aria-label={t('repoAria')}
                   target='_blank'
                   rel='noopener noreferrer'>
-                  GitHub
+                  {t('repoLabel')}
                 </Button>
               )}
             </div>
@@ -136,53 +146,45 @@ const ProjectDetailPage: React.FC = () => {
         </div>
       </header>
 
-      {/* META BAR */}
-      <section className='projDetail__meta' aria-label='Metadados'>
-        <ul className='projDetail__tags' aria-label='Tecnologias'>
-          {tags.map((t) => (
-            <li key={t} className='projDetail__tag'>
-              {t}
+      <section className='projDetail__meta' aria-label={t('metaAria')}>
+        <ul className='projDetail__tags' aria-label={t('metaTechnologiesLabel')}>
+          {tags.map((tTag) => (
+            <li key={tTag} className='projDetail__tag'>
+              {tTag}
             </li>
           ))}
         </ul>
         <div className='projDetail__dates'>
           {createdAt && (
             <span className='projDetail__date' title={createdAt}>
-              Criado: {formatDate(createdAt)}
+              {t('createdLabel')} {formatDate(createdAt, currentLang)}
             </span>
           )}
           {updatedAt && (
             <span className='projDetail__date' title={updatedAt}>
-              Atualizado: {formatDate(updatedAt)}
+              {t('updatedLabel')} {formatDate(updatedAt, currentLang)}
             </span>
           )}
         </div>
       </section>
 
-      {/* CONTENT */}
-      <article className='projDetail__content' aria-label='Conteúdo do projeto'>
-        <h2 className='projDetail__h2'>Descrição</h2>
+      <article className='projDetail__content' aria-label={t('contentAria')}>
+        <h2 className='projDetail__h2'>{t('descriptionHeading')}</h2>
 
         {descriptionHtml ? (
-          <div
-            className='projDetail__rich'
-            // Conteúdo controlado pelo próprio projeto. Evita inserir HTML de terceiros.
-            dangerouslySetInnerHTML={{ __html: descriptionHtml }}
-          />
+          <div className='projDetail__rich' dangerouslySetInnerHTML={{ __html: descriptionHtml }} />
         ) : (
-          <p className='projDetail__p'>
-            {description ||
-              'Este projeto ainda não possui descrição detalhada. Em breve serão adicionadas notas técnicas, aprendizagens e próximos passos.'}
-          </p>
+          <p className='projDetail__p'>{description || t('descriptionFallback')}</p>
         )}
       </article>
+
       <Button
         className='projDetail__action'
-        href='/projects'
+        href={buildPath('projects', currentLang)}
         variant='secondary'
         size='md'
-        aria-label='Voltar à página Sobre'>
-        Voltar
+        aria-label={t('backAria')}>
+        {t('backLabel')}
       </Button>
     </main>
   );

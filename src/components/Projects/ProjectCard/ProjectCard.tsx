@@ -4,6 +4,7 @@
 import React from 'react';
 import './ProjectCard.scss';
 import Button from '../../common/Button/Button';
+import { useTranslation } from 'react-i18next';
 
 export interface ProjectLinks {
   live?: string;
@@ -12,31 +13,17 @@ export interface ProjectLinks {
 }
 
 export interface ProjectCardProps {
-  /** Project title (required) */
   title: string;
-  /** Optional short line under the title */
   subtitle?: string;
-  /** Short description, 2–3 lines recommended */
   excerpt?: string;
-  /** 16:9 image */
   imageSrc?: string;
   imageAlt?: string;
-  /** Tech tags */
   tags?: string[];
-  /** Links: live/demo, repo, details */
   links?: ProjectLinks;
-  /** Optional aria label override for the card region */
   ariaLabel?: string;
-  /** Optional className extension */
   className?: string;
 }
 
-/**
- * ProjectCard
- * - Semantic article with figure and footer actions.
- * - Image fixed to 16:9, rounded, with soft shadow.
- * - Buttons are explicit actions; title can optionally link to details.
- */
 const ProjectCard: React.FC<ProjectCardProps> = ({
   title,
   subtitle,
@@ -48,6 +35,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   ariaLabel,
   className = '',
 }) => {
+  const { t } = useTranslation('projects');
   const rootCls = ['projectCard', className].filter(Boolean).join(' ');
 
   const Title = () => {
@@ -65,14 +53,12 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 
   return (
     <article className={rootCls} aria-label={ariaLabel || title}>
-      {/* Media */}
       {imageSrc && (
         <figure className='projectCard__media'>
           <img className='projectCard__img' src={imageSrc} alt={imageAlt} />
         </figure>
       )}
 
-      {/* Body */}
       <div className='projectCard__body'>
         <header className='projectCard__header'>
           <Title />
@@ -82,7 +68,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         {excerpt && <p className='projectCard__excerpt'>{excerpt}</p>}
 
         {tags.length > 0 && (
-          <ul className='projectCard__tags' aria-label='Tecnologias utilizadas'>
+          <ul className='projectCard__tags' aria-label={t('card.tagsAria')}>
             {tags.map((tag) => (
               <li key={tag} className='projectCard__tag'>
                 {tag}
@@ -92,18 +78,17 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         )}
       </div>
 
-      {/* Footer actions */}
       {(links?.live || links?.repo || links?.details) && (
-        <footer className='projectCard__footer' aria-label='Ações do projeto'>
+        <footer className='projectCard__footer' aria-label={t('card.actionsAria')}>
           {links?.live && (
             <Button
               href={links.live}
               variant='primary'
               size='sm'
-              aria-label='Abrir demonstração'
+              aria-label={t('card.liveAria')}
               target='_blank'
               rel='noopener noreferrer'>
-              Live
+              {t('card.liveLabel')}
             </Button>
           )}
           {links?.repo && (
@@ -111,15 +96,19 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
               href={links.repo}
               variant='secondary'
               size='sm'
-              aria-label='Abrir repositório'
+              aria-label={t('card.repoAria')}
               target='_blank'
               rel='noopener noreferrer'>
-              GitHub
+              {t('card.repoLabel')}
             </Button>
           )}
           {links?.details && (
-            <Button href={links.details} variant='ghost' size='sm' aria-label='Ver detalhes'>
-              Detalhes
+            <Button
+              href={links.details}
+              variant='ghost'
+              size='sm'
+              aria-label={t('card.detailsAria')}>
+              {t('card.detailsLabel')}
             </Button>
           )}
         </footer>

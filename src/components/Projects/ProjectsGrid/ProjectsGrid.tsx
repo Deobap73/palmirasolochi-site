@@ -4,6 +4,7 @@
 import React from 'react';
 import './ProjectsGrid.scss';
 import ProjectCard, { ProjectCardProps } from '../ProjectCard/ProjectCard';
+import { useTranslation } from 'react-i18next';
 
 export interface ProjectGridItem extends Omit<ProjectCardProps, 'className'> {
   id: string;
@@ -11,36 +12,36 @@ export interface ProjectGridItem extends Omit<ProjectCardProps, 'className'> {
 
 export interface ProjectsGridProps {
   items: ProjectGridItem[];
-  /** Mensagem a mostrar quando não há resultados */
   emptyText?: string;
-  /** Reduz espaçamentos verticais */
   compact?: boolean;
-  /** Classe extra opcional */
   className?: string;
 }
 
 const ProjectsGrid: React.FC<ProjectsGridProps> = ({
   items,
-  emptyText = 'Sem projetos para mostrar com os filtros atuais.',
+  emptyText,
   compact = false,
   className = '',
 }) => {
+  const { t } = useTranslation('projects');
   const rootCls = ['projGrid', compact ? 'projGrid--compact' : '', className]
     .filter(Boolean)
     .join(' ');
+
+  const message = emptyText || t('grid.emptyDefault');
 
   if (!items || items.length === 0) {
     return (
       <section className={rootCls} aria-live='polite'>
         <div className='projGrid__empty' role='status'>
-          <p className='projGrid__emptyText'>{emptyText}</p>
+          <p className='projGrid__emptyText'>{message}</p>
         </div>
       </section>
     );
   }
 
   return (
-    <section className={rootCls} aria-label='Lista de projetos'>
+    <section className={rootCls} aria-label={t('grid.ariaLabel')}>
       <div className='projGrid__grid'>
         {items.map(({ id, ...card }) => (
           <div key={id} className='projGrid__cell'>

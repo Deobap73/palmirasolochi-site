@@ -1,0 +1,58 @@
+{
+  "hero": {
+    "title": "Portfólio de Projetos",
+    "subtitle": "UI, Frontend e Prototipagem",
+    "text": "Seleção de trabalhos com foco em acessibilidade, performance e detalhe visual.",
+    "imageAlt": "Preview de projetos",
+    "ctaPrimaryLabel": "Ver todos",
+    "ctaSecondaryLabel": "GitHub"
+  },
+  "intro": {
+    "html": "<p>Uma seleção de projetos de Desenvolvimento de Software que reflete a minha evolução como Programadora e Especialista em QA (Garantia de Qualidade), demonstrando o meu compromisso com a qualidade, aprendizagem contínua e rigor ao longo do meu percurso académico e profissional.</p><p>Cada projeto representa uma etapa importante da minha jornada, desde as primeiras experiências em Testes de Software até ao Desenvolvimento de Aplicações nas seguintes tecnologias e linguagens: <strong>COBOL, Mainframe, Java, C, C++, PHP, C#, ASP Net Core e Python</strong>.</p><p>Aqui encontra um portefólio de projetos que inclui trabalhos académicos, projetos pessoais e exercícios técnicos que solidificam as minhas competências em:</p><ul><li>Programação Backend</li><li>Bases de Dados</li><li>Automação de Testes</li><li>Desenvolvimento Web</li></ul><p>\"Cada linha de código é uma oportunidade para aprender, melhorar e criar algo com impacto real.\"</p>"
+  },
+  "filters": {
+    "legend": "Filtrar projetos",
+    "searchLabel": "Procurar",
+    "searchPlaceholder": "Pesquisar por título, stack…",
+    "clear": "Limpar pesquisa",
+    "hint": "Use a pesquisa e as opções de ordenação para encontrar o projeto certo.",
+    "sortLabel": "Ordenar",
+    "sortNewest": "Mais recentes",
+    "sortOldest": "Mais antigos",
+    "sortAz": "A–Z",
+    "sortZa": "Z–A",
+    "tagsLabel": "Tags",
+    "tagsGroup": "Filtrar por tags"
+  },
+  "list": {
+    "loading": "A carregar…",
+    "error": "Falha ao carregar projetos."
+  },
+  "grid": {
+    "emptyText": "Nenhum projeto encontrado.",
+    "emptyDefault": "Sem projetos para mostrar com os filtros atuais.",
+    "ariaLabel": "Lista de projetos"
+  },
+  "pagination": {
+    "ariaLabel": "Paginação de projetos",
+    "prev": "Página anterior",
+    "next": "Próxima página"
+  },
+  "card": {
+    "tagsAria": "Tecnologias utilizadas",
+    "actionsAria": "Ações do projeto",
+    "liveAria": "Abrir demonstração",
+    "repoAria": "Abrir repositório",
+    "detailsAria": "Ver detalhes",
+    "liveLabel": "Live",
+    "repoLabel": "GitHub",
+    "detailsLabel": "Detalhes"
+  },
+  "ctaBand": {
+    "ariaLabel": "Chamada para ação",
+    "title": "Tem um projeto em mente?",
+    "text": "Fale comigo para desenharmos juntos a melhor solução, com qualidade, acessibilidade e foco no detalhe.",
+    "primaryLabel": "Contactar",
+    "secondaryLabel": "LinkedIn"
+  }
+}

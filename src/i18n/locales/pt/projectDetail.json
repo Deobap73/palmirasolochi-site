@@ -1,0 +1,20 @@
+{
+  "loading": "Carregando…",
+  "notFoundTitle": "Projeto não encontrado",
+  "notFoundExcerpt": "Verifica o endereço ou volta à página de projetos.",
+  "backLabel": "Voltar",
+  "backAria": "Voltar à página de projetos",
+  "heroAria": "Imagem do projeto",
+  "actionsAria": "Ações do projeto",
+  "liveAria": "Abrir demo",
+  "liveLabel": "Live",
+  "repoAria": "Abrir GitHub",
+  "repoLabel": "GitHub",
+  "metaAria": "Metadados do projeto",
+  "metaTechnologiesLabel": "Tecnologias",
+  "createdLabel": "Criado:",
+  "updatedLabel": "Atualizado:",
+  "contentAria": "Conteúdo do projeto",
+  "descriptionHeading": "Descrição",
+  "descriptionFallback": "Este projeto ainda não possui descrição detalhada. Em breve serão adicionadas notas técnicas, aprendizagens e próximos passos."
+}

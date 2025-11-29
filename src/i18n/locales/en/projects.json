@@ -1,0 +1,58 @@
+{
+  "hero": {
+    "title": "Project portfolio",
+    "subtitle": "UI, frontend and prototyping",
+    "text": "A selection of work focused on accessibility, performance and visual detail.",
+    "imageAlt": "Project previews",
+    "ctaPrimaryLabel": "View all",
+    "ctaSecondaryLabel": "GitHub"
+  },
+  "intro": {
+    "html": "<p>A curated selection of Software Development projects that reflects my growth as a developer and QA specialist, showing my commitment to quality, continuous learning and discipline.</p><p>Each project marks an important step in my journey, from early software testing work to building applications using <strong>COBOL, Mainframe, Java, C, C++, PHP, C#, ASP Net Core and Python</strong>.</p><p>Here you will find a portfolio that includes academic work, personal projects and technical exercises that strengthen my skills in:</p><ul><li>Backend development</li><li>Databases</li><li>Test automation</li><li>Web development</li></ul><p>\"Every line of code is a chance to learn, improve and build something that matters.\"</p>"
+  },
+  "filters": {
+    "legend": "Filter projects",
+    "searchLabel": "Search",
+    "searchPlaceholder": "Search by title, stack…",
+    "clear": "Clear search",
+    "hint": "Use search and sorting to find the project you need.",
+    "sortLabel": "Sort",
+    "sortNewest": "Newest first",
+    "sortOldest": "Oldest first",
+    "sortAz": "A–Z",
+    "sortZa": "Z–A",
+    "tagsLabel": "Tags",
+    "tagsGroup": "Filter by tags"
+  },
+  "list": {
+    "loading": "Loading…",
+    "error": "Failed to load projects."
+  },
+  "grid": {
+    "emptyText": "No projects found.",
+    "emptyDefault": "No projects match the current filters.",
+    "ariaLabel": "Project list"
+  },
+  "pagination": {
+    "ariaLabel": "Project pagination",
+    "prev": "Previous page",
+    "next": "Next page"
+  },
+  "card": {
+    "tagsAria": "Technologies used",
+    "actionsAria": "Project actions",
+    "liveAria": "Open live demo",
+    "repoAria": "Open repository",
+    "detailsAria": "View details",
+    "liveLabel": "Live",
+    "repoLabel": "GitHub",
+    "detailsLabel": "Details"
+  },
+  "ctaBand": {
+    "ariaLabel": "Call to action",
+    "title": "Do you have a project in mind?",
+    "text": "Reach out so we can design the best solution together, with quality, accessibility and attention to detail.",
+    "primaryLabel": "Contact",
+    "secondaryLabel": "LinkedIn"
+  }
+}

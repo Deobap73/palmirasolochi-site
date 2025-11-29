@@ -12,6 +12,8 @@ import pt_about from './locales/pt/about.json';
 import pt_certificates from './locales/pt/certificates.json';
 import pt_contact from './locales/pt/contact.json';
 import pt_curriculum from './locales/pt/curriculum.json';
+import pt_projects from './locales/pt/projects.json';
+import pt_projectDetail from './locales/pt/projectDetail.json';
 
 // Import all namespaces en
 import en_common from './locales/en/common.json';
@@ -20,6 +22,8 @@ import en_about from './locales/en/about.json';
 import en_certificates from './locales/en/certificates.json';
 import en_contact from './locales/en/contact.json';
 import en_curriculum from './locales/en/curriculum.json';
+import en_projects from './locales/en/projects.json';
+import en_projectDetail from './locales/en/projectDetail.json';
 
 // Extend namespaces as needed
 export const defaultNS = 'common';
@@ -31,7 +35,16 @@ i18n
     fallbackLng: 'pt',
     supportedLngs: ['pt', 'en'],
     defaultNS,
-    ns: ['common', 'home', 'about', 'certificates', 'contact', 'curriculum'],
+    ns: [
+      'common',
+      'home',
+      'about',
+      'certificates',
+      'contact',
+      'curriculum',
+      'projects',
+      'projectDetail',
+    ],
     resources: {
       pt: {
         common: pt_common,
@@ -40,6 +53,8 @@ i18n
         certificates: pt_certificates,
         contact: pt_contact,
         curriculum: pt_curriculum,
+        projects: pt_projects,
+        projectDetail: pt_projectDetail,
       },
       en: {
         common: en_common,
@@ -48,6 +63,8 @@ i18n
         certificates: en_certificates,
         contact: en_contact,
         curriculum: en_curriculum,
+        projects: en_projects,
+        projectDetail: en_projectDetail,
       },
     },
     interpolation: {

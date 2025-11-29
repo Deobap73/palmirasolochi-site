@@ -1,0 +1,20 @@
+{
+  "loading": "Loading…",
+  "notFoundTitle": "Project not found",
+  "notFoundExcerpt": "Please check the address or return to the projects page.",
+  "backLabel": "Back",
+  "backAria": "Back to projects page",
+  "heroAria": "Project image",
+  "actionsAria": "Project actions",
+  "liveAria": "Open live demo",
+  "liveLabel": "Live",
+  "repoAria": "Open GitHub repository",
+  "repoLabel": "GitHub",
+  "metaAria": "Project metadata",
+  "metaTechnologiesLabel": "Technologies",
+  "createdLabel": "Created:",
+  "updatedLabel": "Updated:",
+  "contentAria": "Project content",
+  "descriptionHeading": "Description",
+  "descriptionFallback": "This project does not yet have a detailed description. Soon it will include technical notes, learnings and next steps."
+}

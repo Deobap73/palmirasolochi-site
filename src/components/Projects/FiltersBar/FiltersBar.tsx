@@ -3,33 +3,21 @@
 
 import React, { useId } from 'react';
 import './FiltersBar.scss';
+import { useTranslation } from 'react-i18next';
 
 export type SortOption = 'newest' | 'oldest' | 'az' | 'za';
 
 export interface FiltersBarProps {
   search: string;
   onSearch: (value: string) => void;
-
   sort: SortOption;
   onSort: (value: SortOption) => void;
-
-  /** Lista total de tags disponíveis (opcional) */
   tags?: string[];
-  /** Tags ativas selecionadas (opcional) */
   activeTags?: string[];
-  /** Toggle de tag (opcional) */
   onToggleTag?: (tag: string) => void;
-
-  /** Layout mais compacto (opcional) */
   compact?: boolean;
 }
 
-/**
- * FiltersBar
- * - Mobile: empilhado
- * - ≥768px: em linha
- * - Acessível: fieldset/legend, labels e aria-pressed nas tags
- */
 const FiltersBar: React.FC<FiltersBarProps> = ({
   search,
   onSearch,
@@ -40,6 +28,7 @@ const FiltersBar: React.FC<FiltersBarProps> = ({
   onToggleTag,
   compact = false,
 }) => {
+  const { t } = useTranslation('projects');
   const formId = useId();
   const legendId = `${formId}-legend`;
 
@@ -57,13 +46,12 @@ const FiltersBar: React.FC<FiltersBarProps> = ({
       <form className='filters__form' role='search' onSubmit={(e) => e.preventDefault()}>
         <fieldset className='filters__set'>
           <legend id={legendId} className='filters__legend'>
-            Filtrar projetos
+            {t('filters.legend')}
           </legend>
 
-          {/* Busca */}
           <div className='filters__row'>
             <label htmlFor={`${formId}-q`} className='filters__label'>
-              Procurar
+              {t('filters.searchLabel')}
             </label>
             <div className='filters__searchWrap'>
               <input
@@ -71,7 +59,7 @@ const FiltersBar: React.FC<FiltersBarProps> = ({
                 className='filters__search'
                 type='search'
                 inputMode='search'
-                placeholder='Pesquisar por título, stack…'
+                placeholder={t('filters.searchPlaceholder')}
                 value={search}
                 onChange={handleSearchChange}
                 aria-describedby={`${formId}-q-hint`}
@@ -80,39 +68,37 @@ const FiltersBar: React.FC<FiltersBarProps> = ({
                 <button
                   type='button'
                   className='filters__clear'
-                  aria-label='Limpar pesquisa'
+                  aria-label={t('filters.clear')}
                   onClick={() => onSearch('')}>
                   ×
                 </button>
               )}
             </div>
             <small id={`${formId}-q-hint`} className='filters__hint'>
-              Pressione Enter para confirmar ou use as opções de ordenação.
+              {t('filters.hint')}
             </small>
           </div>
 
-          {/* Ordenação */}
           <div className='filters__row'>
             <label htmlFor={`${formId}-sort`} className='filters__label'>
-              Ordenar
+              {t('filters.sortLabel')}
             </label>
             <select
               id={`${formId}-sort`}
               className='filters__select'
               value={sort}
               onChange={handleSortChange}>
-              <option value='newest'>Mais recentes</option>
-              <option value='oldest'>Mais antigos</option>
-              <option value='az'>A–Z</option>
-              <option value='za'>Z–A</option>
+              <option value='newest'>{t('filters.sortNewest')}</option>
+              <option value='oldest'>{t('filters.sortOldest')}</option>
+              <option value='az'>{t('filters.sortAz')}</option>
+              <option value='za'>{t('filters.sortZa')}</option>
             </select>
           </div>
 
-          {/* Tags */}
           {tags.length > 0 && (
             <div className='filters__row'>
-              <span className='filters__label'>Tags</span>
-              <div className='filters__tags' role='group' aria-label='Filtrar por tags'>
+              <span className='filters__label'>{t('filters.tagsLabel')}</span>
+              <div className='filters__tags' role='group' aria-label={t('filters.tagsGroup')}>
                 {tags.map((tag) => {
                   const active = activeTags.includes(tag);
                   return (
