@@ -3,18 +3,27 @@
 <html lang="pt-PT" data-theme="light">
   <head>
     <meta charset="UTF-8" />
-    <!-- Use stable favicon paths from /public -->
     <link rel="icon" type="image/png" href="%BASE_URL%icons/icon-192.png" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <!-- Fallback genérico, será substituído pelo react-helmet-async -->
     <meta
       name="description"
-      content="Palmira Solochi, profissional de TI Mainframe (COBOL, JCL, DB2, Zowe) e Desenvolvimento Moderno (Java, ASP.NET Core MVC). Especialista em Automação de Testes (Selenium, Cypress, Cucumber, BDD) e DevSecOps." />
-    <title>
-      Palmira Solochi | Especialista Mainframe, Testes e Desenvolvimento (COBOL, Java, .NET)
-    </title>
+      content="Portfólio profissional de Palmira Solochi, especialista em Mainframe, Testes e Desenvolvimento de Software." />
+    <title>Palmira Solochi | Professional Portfolio</title>
 
-    <!-- Vite entry (do NOT hardcode built assets) -->
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JQ2L2TJJWP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'G-JQ2L2TJJWP');
+    </script>
+
+    <!-- Vite entry -->
     <script type="module" src="/src/main.tsx"></script>
   </head>
   <body>

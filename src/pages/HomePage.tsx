@@ -14,7 +14,7 @@ import IntroBanner from '../components/Home/IntroBanner/IntroBanner';
 import DomainSkills from '../components/Home/DomainSkills/DomainSkills';
 import PhrasesBanner from '../components/Home/PhrasesBanner/PhrasesBanner';
 import ProjectTeaser from '../components/Home/ProjectTeaser/ProjectTeaser';
-import Seo from 'src/components/common/Seo/Seo';
+import Seo from '../components/common/Seo/Seo';
 
 // Import image.
 import hero1 from '../../src/assets/hero-1.webp';
