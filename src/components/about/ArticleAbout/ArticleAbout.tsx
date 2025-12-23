@@ -14,7 +14,7 @@ export interface ArticleAboutProps {
 const ArticleAbout: React.FC<ArticleAboutProps> = ({
   imageSrc,
   imageAlt,
-  title = 'A minha história',
+  title = 'A minha história.',
   paragraphs,
 }) => {
   return (
